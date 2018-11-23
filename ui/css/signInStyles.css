@@ -1,0 +1,111 @@
+body{
+    background-color: #FF8686;
+}
+
+nav{
+    height: 50px;
+    padding: 5px;
+    background-color: #FF3E3E;
+    width: 60%;
+    margin: 5px auto;
+}
+
+#title{
+    font-size: 200%;
+    vertical-align: middle;
+    color: white;
+    margin-right: 1%;
+}
+
+#nav-items{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: inline;
+}
+
+#sign-up{
+    border-radius: 5px;
+    vertical-align: bottom;
+}
+
+.nav-item{
+    display: inline;
+}
+
+#alt-login-prompt{
+    text-align: center;
+}
+
+#g-login{
+    width: 40%;
+    display: block;
+    margin: 5px auto;
+}
+
+.nav-link-item{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline;
+    margin: 0px 5px;
+    vertical-align: bottom;
+}
+
+#sign-in-box{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 60%;
+    height: 500px;
+    margin: 5px auto;
+    background-color: white;
+    border-radius: 1px;
+    padding-top: 1%;
+}
+
+#welcome, #signin{
+    text-align: center;
+}
+
+#form-container{
+    border: solid #FF8585 1px;
+    border-radius: 5px;
+    height: 90%;
+    width: 60%;
+    margin: 2px auto;
+    padding-left: 5px;
+}
+
+#inner-form{
+    width: 70%;
+    height: 90%;
+    margin: 5px auto;
+    padding: 3px;
+}
+
+.text-field{
+    width: 80%;
+    border: 0px;
+    border-bottom: #FF3E3E solid .12em;
+    margin-bottom: 10px;
+}
+
+#hrule{
+    margin: 10% .15em;
+}
+
+#submit{
+    border-color: #FF8585;
+}
+
+footer{
+    width: 60%;
+    margin: 2px auto;
+    text-align: center;
+}
+
+@media screen and (max-width: 650px){
+    #sign-in-box{
+        width: 95%;
+    }
+    .text-field{
+        width: 90%
+    }
+}
