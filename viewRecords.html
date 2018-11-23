@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="css/signInStyles.css" rel="stylesheet">
+    <link href="css/createRecord.css" rel="stylesheet">
+    <link href="css/signUpStyles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/viewRecords.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iReporter | View Records</title>
+</head>
+<body>
+
+    <nav>
+        <strong id="title">iReporter</strong>
+        <ul id = "nav-items">
+            <li class="nav-item"><a href="#" class="nav-link-item">About us</a></li>
+            <li class="nav-item"><a href="#" class="nav-link-item">What We Do</a></li>
+            <li class="nav-item"><a href="#" class="nav-link-item">Events</a></li>
+        </ul>
+        <strong id="user">Hi, user </strong><a href="#" id="sign-out">sign out</a>
+
+        </select>
+    </nav>
+
+    <div id="view-body">
+        <p = "intro">Here, you can view all your logged red-flag and intervention records</p>
+        <label for="sel-type">Select Record to display:</label><br>
+            <select name="rec-type" id="sel-type">
+                <option value="red-flag" selected>Red-flag Records</option>
+                <option value="intervention">Intervention Records</option>
+            </select>
+        <hr id="rule">
+
+        <ul class="list">
+            <li class="list-item rejected" >Rejected Post</li>
+            <li class="list-item under-inv">Post Under Inverstigation</li>
+            <li class="list-item resolved">Resolved Post</li>
+        </ul>
+    </div>
+
+    <footer>&copy iReporter. Join the fight today!</footer>
+
+    <!-- <a href="#" onclick="signOut();">Sign out</a> -->
+    <script src="js/ireport.js"></script>
+</body>
+</html>
