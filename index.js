@@ -59,6 +59,13 @@ app.get('/api/v1/red-flags/:red-flag-id', (req, res) => {
 	res.send({
 		"status": 404,
 		message: "we could not find a red-flag incident with that id",
+app.patch('/red-flags/redID/location', (req, res) => {
+	const id = parseInt(req.params.redID, 10);
+
+	redFlagIncidents.map(redEvent) => {
+		if(redFlagIncidents.id == id){
+			redEvent.location
+		}
 	});
 });
 
