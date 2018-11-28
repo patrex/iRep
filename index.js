@@ -1,3 +1,4 @@
+
 import express from 'express';
 import users from './users';
 import incidents from './incidents';
@@ -38,6 +39,12 @@ app.post('/api/v1/red-flags/', (req, res) => {
 		});
 
 });
+app.get('/api/v1/red-flags', (req, res) => {
+	res.json({
+		"status": 200,
+		"data"  : redFlagIncidents,
+	});
+})
 
 //start the app
 app.listen(port, () => {
