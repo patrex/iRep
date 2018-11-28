@@ -67,6 +67,22 @@ app.patch('/red-flags/redID/location', (req, res) => {
 			redEvent.location
 		}
 	});
+app.delete('/api/v1/red-flags/:redFlagID', (req, res) => {
+	const id = parseInt(req.params.redFlagID, 10);
+
+	redFlagEvents.map((redEvent, position) => {
+		if(redEvent.id == id){
+			redFlagIncidents.splice(position, 1);
+			res.send({
+				status: 201,
+				message: `red-flag incident with id: ${id} was successfully deleted`
+			});
+		}
+	)}
+		res.send({
+			status: 404,
+			message: "Sorry, it appears that there's no event with your id on the database",
+		});
 });
 
 //start the app
