@@ -99,6 +99,21 @@ app.patch('/api/v1/red-flags/:redFlagID/:location', (req, res) => {
 	});
 });
 
+app.patch( '/api/v1/red-flags/:redFlagID/:comment', (req, res) => {
+	const rID = parseInt(req.params.redFlagID, 10);
+	const comments = req.params.comment;
+
+	incidents.map((redEvent, position) => {
+		if(redEvent.id == rID){
+			redEvent.comment = comments;
+			res.send({
+				status: 201,
+				message: `Comment for red-flag record [ ${rID} ] was successfully updated`, 
+			});
+		}
+	});
+});
+
 //delete a particular red-flag incidents !DONE
 app.delete('/api/v1/red-flags/:redFlagID', (req, res) => {
 	const id = parseInt(req.params.redFlagID, 10);

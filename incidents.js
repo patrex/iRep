@@ -6,7 +6,7 @@ let incidents = [
         type: "red-flag",
         location: "23, 34.67",
         images: [],
-        comments: "this transpired today",
+        comment: "this transpired today",
     },
 
     {
@@ -15,7 +15,7 @@ let incidents = [
         type: "intervention",
         location: "6.54, 3.36",
         images: [],
-        comments: "Army molestion",
+        comment: "Army molestion",
         status: "draft",
     },
 
