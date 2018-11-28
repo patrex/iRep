@@ -45,6 +45,22 @@ app.get('/api/v1/red-flags', (req, res) => {
 		"data"  : redFlagIncidents,
 	});
 })
+app.get('/api/v1/red-flags/:red-flag-id', (req, res) => {
+	const redFlagId = parseInt(req.params.red-flag-id, 10);
+	redFlagIncidents.map(redIncident) => {
+		if(redIncident.id == redFlagId){
+			res.send({
+				"status": 200,
+				redIncident,
+			});
+		}
+	}
+
+	res.send({
+		"status": 404,
+		message: "we could not find a red-flag incident with that id",
+	});
+});
 
 //start the app
 app.listen(port, () => {
