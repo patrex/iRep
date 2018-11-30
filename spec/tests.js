@@ -2,10 +2,28 @@ var request = require('request');
 const baseURL = 'http://localhost:3000/';
 
 describe("Test End-points", function(){
-    describe("GET /", function(){
+    describe("GET /red-flags", function(){
         it("should return a status code of 200 ok", function(done){
             request.get(baseURL, function(err, res, body){
                 expect(res.statusCode).toBe(200);
+                done();
+            });
+        }); //end it
+
+        it("should be an object with 'data' key", function(done){
+            request.get(baseURL, function(err, res, body){
+                expect(body).toEqual(jasmine.objectContaining(
+                    {data: }
+                ))
+                done();
+            });
+        }); //end it
+    }); //end describe
+
+    describe("POST /api/v1/red-flags", function(){
+        it("should return a status code of 201", function(done){
+            request.get(baseURL, function(err, res, body){
+                expect(res.statusCode).toBe(201);
                 done();
             });
         }); //end it
@@ -16,5 +34,6 @@ describe("Test End-points", function(){
                 done();
             });
         }); //end it
-    }); //end describe
+        
+    })
 }); //end describe
