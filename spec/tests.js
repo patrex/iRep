@@ -1,5 +1,5 @@
-var request = require('request');
-const baseURL = 'http://localhost:3000/';
+// var request = require('request');
+// const baseURL = 'http://localhost:3000/';
 
 describe("Test End-points", function(){
     describe("GET /", function(){
