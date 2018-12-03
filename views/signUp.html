@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="155833285104-hol340s452kpuak382c75at7ebs47mb6.apps.googleusercontent.com.apps.googleusercontent.com">
+
+        <link href="css/signInStyles.css" rel="stylesheet">
+        <link href="css/createRecord.css" rel="stylesheet">
+        <link href="css/signUpStyles.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/viewRecords.css">
+        <link rel="stylesheet" href="css/index.css">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>iReporter | Sign up</title>
+    </head>
+    <body>
+        <nav>
+            <strong id="title"><a href="index.html" id="logo">iReporter</a></strong>
+            <ul id = "nav-items">
+                <li class="nav-item"><a href="about.html" class="nav-link-item">About us</a></li>
+                <li class="nav-item"><a href="#" class="nav-link-item">What We Do</a></li>
+                <li class="nav-item"><a href="#" class="nav-link-item">Events</a></li>
+            </ul>
+            <a href="signIn.html" class="login">Sign In</a>
+        </nav>
+        
+        <div id="form-area">
+            <h2 class="center">welcome to the sign up area.</h2>
+            <h3 class="center">please fill out this form to create a quick account with iReporter</h3> 
+
+            <div id="inner-form1">
+                <form action="" id="form">
+                    <label for="fname" class="label">First name</label><br>
+                        <input type="text" class="text-field" id="fname" placeholder="Enter first name or id if anonymous">
+                        <br>
+
+                    <label for="lname" class="label">Last name</label><br>
+                        <input type="text" class="text-field" id="lname" placeholder="Enter last name/leave empty if anonymous">
+                        <br>
+
+                    <label for="oname" class="label">Other name(s)</label><br>
+                        <input type="text" class="text-field" id="oname" placeholder="Enter other names/leave empty if anonymous">
+                        <br>
+
+                    <label for="email" class="label">Email(empty if anonymous)</label><br>
+                        <input type="text" class="text-field" id="email" placeholder="Enter phone number/leave empty if anonymous">
+                        <br>
+                    <label for="pwd" class="label">Choose password</label><br>
+                        <input type="password" class="text-field" id="pwd">
+                        <br>
+                    <label for="pwd2" class="label">Confirm your password</label><br>
+                        <input type="password" class="text-field" id="pwd2">
+                        <br>
+                    <button id="submit">Create Account</button>
+                    <hr id="form-divide">
+                    <h2 id="alt-login-prompt" class="center">OR</h2>
+                </form>
+            </div>
+            
+            <div id="alt-logins">
+                <button id="g-login">Sign Up with Google</button>
+            </div>
+
+        </div>
+        
+        <footer>&copy iReporter. Join the fight today!</footer>
+        <script src="js/ireport.js"></script>
+    </body>
+</html>

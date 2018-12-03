@@ -1,16 +1,23 @@
 
-import express from 'express';
-import users from './users';
-import incidents from './incidents';
-import bodyParser from 'body-parser';
+var express = require('express');
+var users = require('./users');
+var incidents = require('./incidents');
+var bodyParser = require('body-parser');
 
 const app = express();  //create Express application
 const port = process.env.PORT || 3000;  //setup port
+
+app.use(express.static('./views'));
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}));
 
 //create a red-flag record		!Done(specialize success message for each type of incident)
+app.get("/", (req, res) => {
+	res.sendFile(__dirname + 'views/index.html')
+
+});
+
 app.post('/api/v1/red-flags', (req, res) => {
 	let createdBy = req.body.userId;
 	let date = new Date();
@@ -99,6 +106,7 @@ app.patch('/api/v1/red-flags/:redFlagID/:location', (req, res) => {
 	});
 });
 
+//add a comment for a specific red-flag record
 app.patch( '/api/v1/red-flags/:redFlagID/:comment', (req, res) => {
 	const rID = parseInt(req.params.redFlagID, 10);
 	const comments = req.params.comment;

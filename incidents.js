@@ -31,4 +31,4 @@ let incidents = [
     }
 ]
 
-export default incidents;
+module.exports =  incidents;

@@ -23,7 +23,8 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "jasmine-node": "^1.16.2"
+    "jasmine-node": "^2.0.1",
+    "mocha": "^5.2.0"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
