@@ -138,7 +138,7 @@ app.delete('/api/v1/red-flags/:redFlagID', (req, res) => {
 
 	res.send({
 		status: 404,
-		message: "Sorry, it appears that there's no red-flag record with your id",
+		message: "Sorry, it appears that there's no red-flag record with that id",
 	});
 });
 

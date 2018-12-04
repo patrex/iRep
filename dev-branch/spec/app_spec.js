@@ -21,7 +21,9 @@ describe("Test End-points", function(){
 
             it("should have a body with 'data' key", function(done){
                 request.get(baseURL, function(err, res, body){
-                    expect(body).toBe('Hello, world');
+                    expect(body).toBe(jasmine.objectContaining({
+                        
+                    }));
                     done();
                 });
             }); //end it

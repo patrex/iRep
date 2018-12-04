@@ -32,7 +32,7 @@ function createUser(user){
 }
 
 //get geoLocation
-function getGeolocation(){
+function getGeoLocation(){
     let loc = prompt('Enter location: ', '0,0');
     let [lat, long] = loc.split(',');
     

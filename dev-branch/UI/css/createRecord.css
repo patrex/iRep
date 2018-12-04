@@ -15,8 +15,11 @@
 }
 
 #user{
-    margin-left: 85%;
-    vertical-align: top;
+    text-decoration: none;
+    color: white;
+    margin: 0px 5px;
+    vertical-align: bottom;
+    margin-left: 2%;
 }
 
 #add-event-btn{

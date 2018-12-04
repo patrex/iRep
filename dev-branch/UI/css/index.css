@@ -1,0 +1,25 @@
+body{
+    background-image: url("bck_img.jpg");
+}
+
+nav{
+    width: 95%;
+}
+
+.nav-link-item{
+    text-decoration: none;
+    color: white;
+    margin: 0px 5px;
+    vertical-align: bottom;
+    margin-left: 2%;
+
+}
+
+ul{
+    padding: 0px;
+}
+
+
+
+
+
