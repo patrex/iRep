@@ -1,8 +1,8 @@
-import incidents from ('../models/incidents');
-import users from ('../models/users');
+import incidents from '../models/incidents';
+import users from '../models/users';
 
 
-class Controllers {
+class RedFlagController {
 	createRedFlag (req, res) {
 		let createdBy = req.params.userId;
 		let date = new Date();
@@ -171,5 +171,5 @@ class Controllers {
 	}
 }
 
-const controllers = new Controllers();
-export {controllers}
+//const redFlagController = new RedFlagController();
+export default new RedFlagController();
