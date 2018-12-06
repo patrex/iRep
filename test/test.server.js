@@ -2,7 +2,7 @@ let chai = require('chai');
 let should = chai.should();
 
 const assert = require('assert')
-let server = require('../index');
+let server = require('./server/index');
 const req = require('supertest');
 
 describe("API Endpoints Test", function(){

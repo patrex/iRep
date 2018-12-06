@@ -1,5 +1,5 @@
 import incidents from '../models/incidents.js';
-import users from '../models/users';
+//import users from '../models/users';
 
 
 class RedFlagController {
