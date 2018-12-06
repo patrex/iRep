@@ -1,31 +1,3 @@
-//Get required DOM elements
-var xhttp = new XMLHttpRequest()
-
-const signinBtn = document.querySelector('#signin-btn');
-signinBtn.addEventListener('click', signIn);
-
-function signIn(){
-  
-  const username = document.getElementById('username').value;
-  alert(username);
-  
-
-  // xhttp.open('GET', 'localhost:3000/api/v1/red-flags', true)
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Get DOM Elements
 const modal = document.getElementById('signin-modal');
