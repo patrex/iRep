@@ -1,6 +1,6 @@
-var express = require('express');
-var router = require('./routes/main.js');
-var bodyParser = require('body-parser');
+import express from 'express';
+import router from ('./routes/main.js');
+import bodyParser from ('body-parser');
 
 const server = express();
 
@@ -11,4 +11,4 @@ server.use(bodyParser.urlencoded({ extended: false }));
 const port = process.env.port || 3000;
 server.listen(port, () => console.log("Server running on localhost:" + port));
 
-module.exports = server;
+export {server}

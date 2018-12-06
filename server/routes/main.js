@@ -23,4 +23,4 @@ router.patch('/api/v1/red-flags/:redFlagID/:location', controller.updateLocation
 //add a comment for a specific red-flag record
 router.patch( '/api/v1/red-flags/:redFlagID/:comment', controller.updateComment);
 
-module.exports = router;
+export {router}

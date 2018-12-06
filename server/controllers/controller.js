@@ -1,5 +1,5 @@
-var incidents = require('../models/incidents');
-var users = require('../models/users');
+import incidents from ('../models/incidents');
+import users from ('../models/users');
 
 
 class Controllers {
@@ -22,19 +22,21 @@ class Controllers {
 			images: [],
 		}
 	
-		if(incidents.push(post))
+		if(incidents.push(post)){
 			res.json({
 				"status": 201,
 				id,
 				post,
 				message: "Created red-flag record",
 			});
-		else
+		}
+			
+		else{
 			res.json({
 				status: 500,
 				"message": "Post could not be created at this time.",
 			});
-	
+		}
 	}
 	
 	//return all red-flag incidents. DONE!
@@ -48,11 +50,12 @@ class Controllers {
 				"data"  : redFlagIncidents,
 			});
 		} 
-		else
-		res.json({
-			"status": 404,
-			"message": "No red-flag incidents found",
-		});
+		else{
+			res.json({
+				"status": 404,
+				"message": "No red-flag incidents found",
+			});
+		}
 	}
 	
 	//get a specific red-flag incident. DONE!
@@ -68,16 +71,17 @@ class Controllers {
 			}		
 		});
 
-		if(flag)
+		if(flag){
 			res.json({
 				"status": 200,
 				data,
-			});
-		else	
+			});}
+		else{
 			res.send({
 				"status": 404,
 				message: "we could not find a red-flag incident with that id",
 			});
+		}		
 	}
 	
 	//delete a particular red-flag incidents !DONE
@@ -92,16 +96,20 @@ class Controllers {
 			}
 		});
 
-		if(flag)
+		if(flag){
 			res.json({
 				status: 201,
 				message: `red-flag incident with id [ ${id} ] was successfully deleted`
 			});
-		else
+		}
+			
+		else{
 			res.json({
 				status: 404,
 				message: "Sorry, it appears that there's no red-flag record with your id",
 			});
+		}
+			
 	}
 	
 	//add a location for a specific red-flag incident
@@ -118,16 +126,19 @@ class Controllers {
 			}
 		});
 
-		if(flag)
+		if(flag){
 			res.json({
 				status: 201,
 				message: `location for red-flag incident with id [ ${rID} ] was successfully updated.`
 			});
-		else
+		}
+			
+		else{
 			res.json({
 				status: 404,
 				message: `Sorry, we could't set the location for ${location}`,
-			});	
+			});
+		}		
 	}
 	
 	//add a comment for a specific red-flag record
@@ -143,18 +154,22 @@ class Controllers {
 			}
 		});
 
-		if(flag)
+		if(flag){
 			res.json({
 				status: 200,
 				message: `Comment for red-flag record [ ${rID} ] was successfully updated`, 
 			});
-		else
-		res.json({
-			status: 404,
-			message: `Sorry, we could't set the comments for ${comments}`,
-		});
+		}
+			
+		else{
+			res.json({
+				status: 404,
+				message: `Sorry, we could't set the comments for ${comments}`,
+			});
+		}
+		
 	}
 }
 
 const controllers = new Controllers();
-module.exports = controllers;
+export {controllers}

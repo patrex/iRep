@@ -31,4 +31,4 @@ let incidents = [
     }
 ]
 
-module.exports =  incidents;
+export {incidents}

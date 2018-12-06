@@ -24,8 +24,6 @@ const users = [
         isAdmin: false,
         isAnon: true,
     },
-
-
 ]
 
-module.exports = users;
+export {users}
