@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>welcome | user</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/styles.css" />
+</head>
+<body>
+    <div id="profile-bdy">
+        <div id="left-pane">
+            <div id="banner">
+                <a href="" id="logo">iReporter</a>
+                <p>{username here}</p>
+            </div>
+
+            <div id="content">
+                <a href="profile.html" class="prof-items">Profile</a>
+                <a href="incidents.html" class="prof-items">Red-flag Records</a>
+            </div>
+        </div>
+
+        <div id="right-pane">
+            <div id="create-red">
+                <button class="button action-btn">Create red-flag Record</button>
+                <p = "intro">Here, you can view all your logged red-flag and intervention records</p>
+                <label for="sel-type">Select Record Type to display:</label><br>
+                    <select name="rec-type" id="sel-type">
+                <option value="red-flag" selected>Red-flag Records</option>
+                <option value="intervention">Intervention Records</option>
+            </select>
+
+            <hr id="rule">
+
+            <ul class="list">
+            <li class="list-item rejected" >Rejected Post</li> 
+                <button class="red-action-btn">Delete</button> 
+                <buton class="red-action-btn">Edit</buton>
+            <li class="list-item under-inv">Post Under Inverstigation</li> 
+                <button class="red-action-btn">Delete</button> 
+                <buton class="red-action-btn">Edit</buton>
+            <li class="list-item resolved">Resolved Post</li> 
+                <button class="red-action-btn">Delete</button> 
+                <buton class="red-action-btn">Edit</buton>
+        </ul>
+    </di
+            </div>
+        </div>
+    </div> 
+</body>
+</html>
