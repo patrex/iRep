@@ -1,6 +1,5 @@
 var express = require('express');
 var controller = require('../controllers/controller');
-//import bodyParser from 'body-parser';
 
 const router = express.Router();
 

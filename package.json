@@ -4,7 +4,8 @@
   "description": "Project aims to help report cases of corruption",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "./server/index.js"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
-var incidents = require('../incidents');
-var users = require('../users');
+var incidents = require('../../models/incidents');
+var users = require('../..models/users');
 
 
 class Controllers {
