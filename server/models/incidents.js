@@ -31,4 +31,4 @@ let incidents = [
     }
 ]
 
-export {incidents}
+export default incidents;

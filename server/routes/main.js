@@ -2,7 +2,6 @@ import express from 'express';
 import redFlagController from '../controllers/redflagcontroller';
 
 const router = express.Router();
-console.dir(redFlagController);
 //create a red flag record
 router.post('/api/v1/red-flags', redFlagController.createRedFlag);
 

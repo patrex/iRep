@@ -1,4 +1,4 @@
-import incidents from '../models/incidents';
+import incidents from '../models/incidents.js';
 import users from '../models/users';
 
 
@@ -42,7 +42,7 @@ class RedFlagController {
 	//return all red-flag incidents. DONE!
 	getAllRedFlags (req, res) {
 		//use map to select only red-flag incidents
-		let redFlagIncidents = incidents.filter( (incident) => incident.type === "red-flag" );
+		let redFlagIncidents = incidents.filter( (incident) => incident.type == "red-flag" );
 		
 		if(redFlagIncidents.length > 0){
 			res.json({
@@ -118,13 +118,12 @@ class RedFlagController {
 		const location = req.params.location;
 		let flag = false;
 
-		incidents.map((redEvent, position) => {
-			if(redEvent.id == rID){
-				if(redEvent.location = location);
-					flag = true;
-				//incidents.splice(position, 1);	//!
-			}
-		});
+		for(let incident of incidents){
+			if(incident.id == rID){
+				incident.location = location;
+				flag = true;
+			}	
+		}
 
 		if(flag){
 			res.json({
@@ -146,13 +145,13 @@ class RedFlagController {
 		const rID = parseInt(req.params.redFlagID, 10);
 		const comments = req.params.comment;
 		let flag = false;
-	
-		incidents.map((redEvent) => {
-			if(redEvent.id == rID){
-				if(redEvent.comment = comments)
-					flag = true;
-			}
-		});
+
+		for(let incident of incidents){
+			if(incident.id == rID){
+				incident.comment = comments;
+				flag = true;
+			}	
+		}
 
 		if(flag){
 			res.json({
@@ -164,7 +163,7 @@ class RedFlagController {
 		else{
 			res.json({
 				status: 404,
-				message: `Sorry, we could't set the comments for ${comments}`,
+				message: `Sorry, we could't set the comments for ${rID}`,
 			});
 		}
 		
