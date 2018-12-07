@@ -2,6 +2,7 @@ import incidents from '../models/incidents.js';
 //import users from '../models/users';
 
 
+
 class RedFlagController {
 	createRedFlag (req, res) {
 		let createdBy = req.params.userId;

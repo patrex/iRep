@@ -1,5 +1,5 @@
 import express from 'express';
-import router from './routes/main.js';
+import router from './routes/redFlagRouter';
 import bodyParser from 'body-parser';
 
 const server = express();
