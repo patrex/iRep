@@ -1,34 +1,43 @@
 {
-  "name": "iReporter",
+  "name": "ireporter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Project aims to help report cases of corruption",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/jasmine-node spec"
+    "test": "mocha",
+    "start": "babel-watch server/index"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/patrex/iRep.git"
+    "url": "git+https://github.com/patrex/iReporter.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "[crime",
+    "reporting",
+    "whistle-blowing",
+    "alert]"
+  ],
+  "author": "Patsoks Patsokari",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/patrex/iRep/issues"
+    "url": "https://github.com/patrex/iReporter/issues"
   },
-  "homepage": "https://github.com/patrex/iRep#readme",
+  "homepage": "https://github.com/patrex/iReporter#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-watch": "^2.0.7",
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "jasmine-node": "^2.0.1",
-    "mocha": "^5.2.0"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "request": "^2.88.0"
+    "mocha": "^5.2.0",
+    "request": "^2.88.0",
+    "supertest": "^3.3.0"
   }
 }
