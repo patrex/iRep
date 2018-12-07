@@ -1,29 +1,28 @@
 import incidents from '../models/incidents.js';
-//import users from '../models/users';
 
 
 
 class RedFlagController {
 	createRedFlag (req, res) {
-		let createdBy = req.params.userId;
-		let date = new Date();
-		let details = req.params.postData;
-		let type = req.params.type;
-	
 		let id = incidents.length + 1;
+		let date = new Date();
+		let flag = false;
 	
 		const post = {
 			id,
-			createdBy,
+			createdBy: "",
 			createdOn: date,
-			comment: details,
-			type,
+			type: "red-flag",
 			"status": "draft",
 			"location": "",
 			images: [],
 		}
 	
 		if(incidents.push(post)){
+			flag = true;
+		}
+
+		if(flag){
 			res.json({
 				"status": 201,
 				id,
@@ -76,7 +75,8 @@ class RedFlagController {
 			res.json({
 				"status": 200,
 				data,
-			});}
+			});
+		}
 		else{
 			res.send({
 				"status": 404,
@@ -115,13 +115,13 @@ class RedFlagController {
 	
 	//add a location for a specific red-flag incident
 	updateLocation (req, res) {
-		const rID = parseInt(req.params.redFlagID, 10);
-		const location = req.params.location;
+		//const rID = parseInt(req.params.redFlagID, 10);
 		let flag = false;
+		let rID = req.params.redFlagID;
 
 		for(let incident of incidents){
 			if(incident.id == rID){
-				incident.location = location;
+				incident.location = req.params.location;
 				flag = true;
 			}	
 		}
@@ -143,8 +143,8 @@ class RedFlagController {
 	
 	//add a comment for a specific red-flag record
 	updateComment (req, res) {
-		const rID = parseInt(req.params.redFlagID, 10);
-		const comments = req.params.comment;
+		const rID = parseInt(req.body.redFlagID, 10);
+		const comments = req.body.comment;
 		let flag = false;
 
 		for(let incident of incidents){

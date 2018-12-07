@@ -1,82 +1,52 @@
-
-    //validate post create
-    function validateCreate(request, response, next){
-        if(!(request.params.comments)){
-            response.json({
-               status: 404,
-               message: 'comments too short',
-            })
-            response.end();;
-        }
-    
-
-        if(!(request.params.type)){
-            response.json({
-                status: 404,
-                message: "You need to indicate a type='red-flag' "
-            });
-            response.end();;
-        }
-    }
+import validate from 'validator';
 
     //validate getting a single red-flag id
     function validateGetARed(request, response, next){
-        if(isNaN(request.params.redFlagID)){
-            response.json({
+        if(!request.params.redFlagID){
+            return response.json({
                 status: 404,
                 message: 'You are required to enter an integer here'
             });
-            response.end();
-        }
+            
+        } else next();
     }
 
     //validate location edit
     function validateEditLocation(request, response, next){
-        if(!redFlagID){
-            response.json({
+        if(!request.params.redFlagID){
+            return response.json({
                 status: 404,
                 message: 'You need to provide red-flag id'
             });
-            response.end();;
-
-        }
-
-        if(!location){
-            response.json({
-                status: 404,
-                message: 'You need to provide a location(long, lat)'
-            });
-            response.end();;
-        }
+        } 
+        else next();
     }
     // validate comment edit
     function validateEditComment(request, response, next){
-        if(!request.params.redFlagID){
-            response.json({
+        if(!request.body.redFlagID){
+            return response.json({
                 status: 404,
                 message: 'You need to provide red-flag id'
             })
-            response.end();;
         }
-
-        if(!request.params.comment){
-            response.json({
+        else if(!request.body.comment){
+            return response.json({
                 status: 404,
-                message: 'You need to provide a location(long, lat)'
+                message: 'You need to provide a comment'
             });
-            response.end();
         }
+        else next();
     }
 
     //validateDelete
     function validateDelete(request, response, next){
         if(!request.params.redFlagID){
-            response.json({
+            return response.json({
                 status: 404,
                 message: 'You need to provide red-flag id to delete'
             })
-            response.end();
-        }
+            
+        } else next();
     }
 
-export {validateDelete, validateEditComment, validateEditLocation, validateGetARed, validateCreate}
+export {validateDelete, validateEditComment, validateEditLocation, validateGetARed}

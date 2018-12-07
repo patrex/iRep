@@ -3,6 +3,7 @@ node_js:
   - "node"
 
 before_script:
+  - "npm i -g mocha"
   - "npm i -g supertest"
   - "npm i -g request"
 
