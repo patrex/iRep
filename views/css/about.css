@@ -1,0 +1,18 @@
+#body-content{
+    width: 60%;
+    margin: 5px auto;
+    background-color: white;
+    padding: 5px;
+}
+
+#about-heading{
+    text-align: center;
+}
+
+#body_{
+    width: 60%;
+    margin: 10px auto;
+    text-align: justify;
+    line-height: 140%;
+    font-size: 120%;
+}

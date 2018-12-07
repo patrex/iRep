@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="css/signInStyles.css" rel="stylesheet">
+    <link href="css/createRecord.css" rel="stylesheet">
+    <link href="css/signUpStyles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/viewRecords.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iReport | Create Intervention</title>
+</head>
+<body>
+    <nav>
+        <strong id="title"> <a href="index.html" id="logo">iReporter</a></strong>
+        <ul id = "nav-items">
+            <li class="nav-item"><a href="#" class="nav-link-item">About us</a></li>
+            <li class="nav-item"><a href="#" class="nav-link-item">What We Do</a></li>
+            <li class="nav-item"><a href="#" class="nav-link-item">Events</a></li>
+        </ul>
+        <strong id="user">Hi, user </strong> <a href="#" id="sign-out">sign out</a>
+
+    </nav>
+
+    <div id="create-intervention">
+        <p id="intro" class="center">Here, you can can create an SOS for a public service</p>
+        <div id="form-wrap">
+            <form action="" id="form">
+                <p class="element">Please, enter a short description</p>
+                <textarea class="element" name="description" id="desc-red" cols="30" rows="10" placeholder="Enter short description of event..."></textarea>
+                <br><br>
+                <input type="file" id="add-img-btn" class="button" accept="image/*" value="Select image">
+                <button type="button" id="add-loc-btn" class="button" onclick="getgeo()">Add a location</button>
+                <br><br>
+                <button type="submit" id="add-event-btn">Create Event</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>&copy iReporter. Join the fight today!</footer>
+    <script src="js/ireport.js"></script>
+</body>
+</html>
