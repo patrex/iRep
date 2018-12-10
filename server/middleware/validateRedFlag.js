@@ -5,7 +5,7 @@ import validate from 'validator';
         if(!request.params.redFlagID){
             return response.json({
                 status: 404,
-                message: 'You are required to enter an integer here'
+                message: 'You are required to enter a red-flag ID here'
             });
             
         } 
@@ -17,7 +17,7 @@ import validate from 'validator';
         if(!request.params.redFlagID){
             return response.json({
                 status: 404,
-                message: 'You need to provide red-flag id'
+                message: 'You need to provide a red-flag id'
             });
         } 
         else next();

@@ -1,10 +1,12 @@
 import express from 'express';
 import router from './routes/redFlagRouter';
+import { type } from 'os';
 
 const server = express();
 
 
 server.use(express.json());
+server.use(express.urlencoded({extended:false}));
 
 server.use('/', router);
 

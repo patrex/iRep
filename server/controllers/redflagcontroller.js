@@ -21,7 +21,7 @@ class RedFlagController {
 		}
 
 		if(flag){
-			res.json({
+			res.status(200).json({
 				"status": 201,
 				id,
 				post,
@@ -98,7 +98,7 @@ class RedFlagController {
 		if(flag){
 			res.json({
 				status: 201,
-				message: `red-flag incident with id [ ${id} ] was successfully deleted`
+				message: `red-flag incident with id [${id}] was successfully deleted`
 			});
 		}
 			
@@ -113,11 +113,9 @@ class RedFlagController {
 	
 	//add a location for a specific red-flag incident
 	updateLocation (req, res) {
-		//const rID = parseInt(req.params.redFlagID, 10);
 		let flag = false;
 		let rID = req.params.redFlagID * 1;
-
-		
+		let location = undefined;
 
 		for(let incident of incidents){
 			if(incident.id == rID){
@@ -126,19 +124,17 @@ class RedFlagController {
 			}	
 		}
 
-		
-
 		if(flag){
 			res.json({
-				status: 201,
-				message: `location for red-flag incident with id [ ${rID} ] was successfully updated.`
+				status: 200,
+				message: `location for red-flag incident with id [${rID}] was successfully updated.`
 			});
 		}
 			
 		else{
 			res.json({
 				status: 404,
-				message: `Sorry, we could't set the location for ${location}`,
+				message: `Could not set the location for ${rID}`,
 			});
 		}		
 	}
@@ -159,14 +155,14 @@ class RedFlagController {
 		if(flag){
 			res.json({
 				status: 200,
-				message: `Comment for red-flag record [ ${rID} ] was successfully updated`, 
+				message: `Comment for red-flag record [${rID}] was successfully updated`
 			});
 		}
 			
 		else{
 			res.json({
 				status: 404,
-				message: `Sorry, we could't set the comments for ${rID}`,
+				message: `Could not set comments for ${rID}`
 			});
 		}
 		
