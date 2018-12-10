@@ -2,7 +2,8 @@ const assert = require('assert')
 let server = require('../server');
 const req = require('supertest');
 const should = require('chai').should();
-const chaihttp = require('chai-http');
+const chaiexpect = require('chai').expect;
+const chaiassert = require('chai').assert;
 
 describe("API Endpoints Test", function(){
     it("get all red-flag records", function(done){
@@ -10,9 +11,30 @@ describe("API Endpoints Test", function(){
             .expect(200).end((err, res) => {
                 if(err) return done(err);
                 assert.ok(res.body.status == 200);
+
                 done();
             });
     });
+
+    it("ensure that returned object has is not empty", function(done){
+        req(server).get('/api/v1/red-flags')
+            .expect(200).end((err, res) => {
+                if(err) return done(err);
+                chaiexpect(res.body).to.not.be.empty;
+                done();
+            });
+    });
+
+    it("ensure that returned object has property 'status'", function(done){
+        req(server).get('/api/v1/red-flags')
+            .expect(200).end((err, res) => {
+                if(err) return done(err);
+                chaiexpect(res.body).to.have.property('status');
+                done();
+            });
+    });
+
+
 
     it('respond with json for GET /', function(done) {
         req(server)
