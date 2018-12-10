@@ -20,6 +20,12 @@ import validate from 'validator';
                 message: 'You need to provide a red-flag id'
             });
         } 
+        else if(!validate.isLatLong(request.body.location)){
+            return response.status(404).json({
+                status: 400,
+                message: `The cordinates you entered are not not valid. Use (lat, long)`
+            });
+        }
         else next();
     }
     // validate comment edit
@@ -51,4 +57,4 @@ import validate from 'validator';
         } else next();
     }
 
-export {validateDelete, validateEditComment, validateEditLocation, validateGetARed}
+export { validateDelete, validateEditComment, validateEditLocation, validateGetARed }

@@ -85,7 +85,7 @@ class RedFlagController {
 	
 	//delete a particular red-flag incidents !DONE
 	deleteRedFlag (req, res) {
-		const id = parseInt(req.params.redFlagID, 10);
+		const id = req.params.redFlagID * 1;
 		let flag = false;
 	
 		incidents.map((redEvent, position) => {
