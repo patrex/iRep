@@ -1,7 +1,5 @@
 import incidents from '../models/incidents.js';
 
-
-
 class RedFlagController {
 	createRedFlag (req, res) {
 		let id = incidents.length + 1;
@@ -117,14 +115,18 @@ class RedFlagController {
 	updateLocation (req, res) {
 		//const rID = parseInt(req.params.redFlagID, 10);
 		let flag = false;
-		let rID = req.params.redFlagID;
+		let rID = req.params.redFlagID * 1;
+
+		
 
 		for(let incident of incidents){
 			if(incident.id == rID){
-				incident.location = req.params.location;
+				incident.location = req.body.location;
 				flag = true;
 			}	
 		}
+
+		
 
 		if(flag){
 			res.json({
@@ -143,7 +145,7 @@ class RedFlagController {
 	
 	//add a comment for a specific red-flag record
 	updateComment (req, res) {
-		const rID = parseInt(req.body.redFlagID, 10);
+		const rID = req.params.redFlagID * 1;
 		const comments = req.body.comment;
 		let flag = false;
 

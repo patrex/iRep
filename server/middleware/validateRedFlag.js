@@ -8,7 +8,8 @@ import validate from 'validator';
                 message: 'You are required to enter an integer here'
             });
             
-        } else next();
+        } 
+        else next();
     }
 
     //validate location edit
@@ -23,12 +24,13 @@ import validate from 'validator';
     }
     // validate comment edit
     function validateEditComment(request, response, next){
-        if(!request.body.redFlagID){
+        if(!request.params.redFlagID){
             return response.json({
                 status: 404,
-                message: 'You need to provide red-flag id'
-            })
+                message: 'You need to provide a red-flag id'
+            });
         }
+
         else if(!request.body.comment){
             return response.json({
                 status: 404,
@@ -44,7 +46,7 @@ import validate from 'validator';
             return response.json({
                 status: 404,
                 message: 'You need to provide red-flag id to delete'
-            })
+            });
             
         } else next();
     }
