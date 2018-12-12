@@ -1,6 +1,5 @@
 import express from 'express';
 import router from './routes/redFlagRouter';
-import { type } from 'os';
 
 const server = express();
 
