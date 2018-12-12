@@ -11,6 +11,10 @@ import {
 
 const router = express.Router({mergeParams: true});
 
+router.get('/', (request, response) => {
+	document.writeln("Hello, world");
+});
+
 //create a red flag record
 router.post('/api/v1/red-flags', redFlagController.createRedFlag);
 

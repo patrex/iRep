@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-			value: true
+	value: true
 });
 
 var _express = require('express');
@@ -17,6 +17,10 @@ var _validateRedFlag = require('../middleware/validateRedFlag');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router({ mergeParams: true });
+
+router.get('/', function (request, response) {
+	document.writeln("Hello, world");
+});
 
 //create a red flag record
 router.post('/api/v1/red-flags', _redflagcontroller2.default.createRedFlag);
