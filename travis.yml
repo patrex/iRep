@@ -5,6 +5,7 @@ node_js:
 before_script:
   - "npm i -g mocha"
   - "npm i -g supertest"
+  - "npm i -g chai"
 
 script:
   - npm test
