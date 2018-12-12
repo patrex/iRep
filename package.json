@@ -4,7 +4,7 @@
   "description": "Project aims to help report cases of corruption",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/babel-node ./server/index",
+    "start": "node ./build/index",
     "test": "mocha --compilers js:babel-core/register",
     "dev-start": "babel-watch server.js",
     "build": "babel ./server/index.js --out-dir build"
