@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var server = (0, _express2.default)();
 
-server.use(_express2.default.static('.'));
+server.use(_express2.default.static('../UI'));
 server.use(_express2.default.json());
 server.use(_express2.default.urlencoded({ extended: false }));
 
