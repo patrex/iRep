@@ -40,9 +40,9 @@ main{
   min-height: 400px;
   width: 70%;
   border-radius: 7px;
-  margin: 8em auto;
-  filter:alpha(opacity=90);
-  opacity: .9;
+  margin: 5em auto;
+  filter:alpha(opacity=70);
+  opacity: .7;
   background-color: beige;
   text-align: center;
   align-items: center;
