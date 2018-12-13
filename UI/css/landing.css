@@ -41,8 +41,8 @@ main{
   width: 70%;
   border-radius: 7px;
   margin: 5em auto;
-  filter:alpha(opacity=70);
-  opacity: .7;
+  filter:alpha(opacity=85);
+  opacity: .85;
   background-color: beige;
   text-align: center;
   align-items: center;
@@ -148,6 +148,7 @@ main{
   width: 15%;
   margin: 2em auto;
   opacity: .8;
+  background-color: #3876ac;
   filter:alpha(opacity=80);
 }
 
