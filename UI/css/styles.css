@@ -1,0 +1,133 @@
+/* Style content panes */
+
+#cases {
+  background-color: rgb(253, 145, 112);
+  width: 25%;
+  height: 40%;
+  margin: 10px 30px;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+#resolved {
+  background-color: rgb(173, 255, 173);
+  width: 25%;
+  height: 40%;
+  margin: 10px 30px;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+#under-inv {
+  background-color: rgb(250, 209, 132);
+  width: 25%;
+  height: 40%;
+  margin: 10px 30px;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+#rejected {
+  background-color: rgb(253, 0, 51);
+  width: 25%;
+  height: 40%;
+  margin: 10px 30px;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+.status-msg{
+  font-size: 120%;
+  font-weight: bold;
+  margin: 25% .1em;
+  
+}
+
+
+.action-btn{
+    background: #428bca;
+    padding: 1em 2em;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 7em;
+    width: 10em;
+    margin: 10px 2em;
+
+}
+
+/* style incidents */
+#rule{
+    margin: 2em auto;
+}
+
+#view-body{
+    width: 60%;
+    height: 500px;
+    margin: 1em auto;
+    background-color: white;
+}
+
+.list{
+    margin: 10px 0px;
+}
+
+.list-item{
+    font-family: Arial, Helvetica, sans-serif;
+    opacity: 0.7;
+    width: 80%;
+    margin-left: 20px;
+    margin-top: 20px;
+    text-decoration: none;
+    font-style: normal;
+    list-style-type: none;
+    border-bottom: 1px solid red;
+}
+
+.rejected{
+    text-decoration: line-through;
+    opacity: .4;
+    color: red;
+    font-style: italic;
+}
+
+.under-inv{
+    color: orangered;
+    font-style: italic;
+    opacity: .6;
+}
+
+.resolved{
+    color: green;
+    font-weight: bold;
+}
+
+.red-action-btn{
+    background: #428bca;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+@media screen and (max-width: 650px ){
+    .list-item{
+        width: 80%;
+        margin-left: 5px;
+    }
+
+    #view-body{
+        width: 95%;
+        padding: 5px;
+    }
+}
+
+/* style display of red-flag records */
+.reds{
+  width: 30%;
+  height: 2em;
+  background-color: crimson;
+  color: whitesmoke;
+}

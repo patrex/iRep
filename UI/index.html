@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/landing.css">
+
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iReporter | welcome</title>
+</head>
+<body>
+    <nav>
+        <strong><a href="#" id="logo">iReporter</a></strong>
+        <a href="#" class="nav-item">What we do</a>
+        <a href="#" class="nav-item">How we do it</a>
+        <a href="#" class="nav-item">Meet The Team</a>
+        <a href="#" class="nav-item">What's Coming up</a>
+    </nav>
+
+    <main>
+        <h2>welcome to iReporter</h2>
+        <p>Connect with the general public by bringing acts of corruption
+            and negligence of public service to book.
+            be sure to take extra precautions if you are going to take a snapshot. fighting corruption
+            and negligence of public services is not a day's job but each of us can contribute to roll it back
+        </p>
+
+        <button id="modal-btn" class="button login-btn">Sign in</button>
+
+        <div id="signin-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2>Sign in</h2>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="GET">
+                        <label for="username">Username</label><br>
+                        <input type="text" id="username" class="form-input">
+                        <br>
+
+                        <label for="pwd">Password</label><br>
+                        <input type="text" id="pwd" class="form-input">
+                        <br>
+
+                        <input type="submit" name="" class="button" value="Sign in" id="signin-btn">
+                    </form>
+                </div>
+            <div class="modal-footer">
+                <h5>iReporter</h5>
+            </div>
+            </div>
+        </div>
+        <!-- sign up -->
+        <button id="modal-btn1" class="button login-btn">Sign up</button>
+
+        <div id="signup-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close" id="close2">&times;</span>
+                    <h2>Sign up</h2>
+                </div>
+            <div class="modal-body">
+                <form action="">
+                    <label for="fname">First name  </label><br>
+                    <input type="text" class="form-input" id="fname">
+                    <br>
+        
+                    <label for="lname">Last name   </label><br>
+                    <input type="text" class="form-input" id="lname" placeholder="leave empty if anonymous">
+                    <br>
+    
+                    <label for="oname">Other names    </label><br>
+                    <input type="text" class="form-input" id="oname" placeholder="leave empty if anonymous">
+                    <br>
+    
+                    <label for="phone">Phone Number   </label><br>
+                    <input type="number" class="form-input" id="phone" placeholder="leave empty if anonymous">
+                    <br>
+    
+                    <label for="psw">Password  </label><br>
+                    <input type="text" class="form-input" id="psw">
+                    <br>
+    
+                    <label for="pconf">Confirm password    </label><br>
+                    <input type="text" class="form-input" id="pconf">
+                    <br>
+    
+                    <input type="submit" value="Sign up" class="button">
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <h5>iReporter</h5>
+            </div>
+            </div>
+        </div>
+    </main>
+    <script src="./js/script.js"></script>
+    <script src="./js/script2.js"></script>
+</body>
+</html>
