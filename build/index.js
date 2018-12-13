@@ -18,7 +18,7 @@ server.use(_express2.default.urlencoded({ extended: false }));
 
 server.use('/', _redFlagRouter2.default);
 
-var port = process.env.port || 3000;
+var port = process.env.PORT || 3000;
 server.listen(port, function () {
   return console.log("Server running on localhost:" + port);
 });
