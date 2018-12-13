@@ -21,7 +21,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var router = _express2.default.Router({ mergeParams: true });
 
 router.get('/', function (request, response) {
-	response.sendFile( __dirname + '../../UI/index.html');
+	response.sendFile( path.resolve(__dirname, '../../UI/', 'index.html') );
 });
 
 //create a red flag record
