@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="./css/landing.css">
-
     <link rel="shortcut icon" type="image/png" href="./img/favicon.png">
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="12297062716-6jnifkg4kkatgbso0rcntcv2lapvk88a.apps.googleusercontent.com">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -54,6 +57,10 @@
         </div>
         <!-- sign up -->
         <button id="modal-btn1" class="button login-btn">Sign up</button>
+        <hr id="line-div">
+        <h3>OR</h3>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <!-- <button id="g-btn" class="button">Sign in with Google</button> -->
 
         <div id="signup-modal" class="modal">
             <div class="modal-content">

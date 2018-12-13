@@ -1,5 +1,5 @@
 body{
-  background-image: url("../img/bck_img.jpg");
+  background-image: url("../img/bck_img_lite.jpg");
 }
 
 /* style navigation */
@@ -141,6 +141,10 @@ main{
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+#line-div{
+  width: 60%;
 }
   
 @keyframes modalopen {
