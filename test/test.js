@@ -1,9 +1,9 @@
-let chai = require('chai');
-let should = chai.should();
-
 const assert = require('assert')
-let server = require('./server/index');
+let server = require('../server');
 const req = require('supertest');
+const should = require('chai').should();
+const chaiexpect = require('chai').expect;
+const chaiassert = require('chai').assert;
 
 describe("API Endpoints Test", function(){
     it("get all red-flag records", function(done){
@@ -11,9 +11,30 @@ describe("API Endpoints Test", function(){
             .expect(200).end((err, res) => {
                 if(err) return done(err);
                 assert.ok(res.body.status == 200);
+
                 done();
             });
     });
+
+    it("ensure that returned object has is not empty", function(done){
+        req(server).get('/api/v1/red-flags')
+            .expect(200).end((err, res) => {
+                if(err) return done(err);
+                chaiexpect(res.body).to.not.be.empty;
+                done();
+            });
+    });
+
+    it("ensure that returned object has property 'status'", function(done){
+        req(server).get('/api/v1/red-flags')
+            .expect(200).end((err, res) => {
+                if(err) return done(err);
+                chaiexpect(res.body).to.have.property('status');
+                done();
+            });
+    });
+
+
 
     it('respond with json for GET /', function(done) {
         req(server)
@@ -41,21 +62,14 @@ describe("API Endpoints Test", function(){
       });
 
     it("should modify the location of a specific red-flag record", function(done){
-        req(server).patch('/api/v1/red-flags/1/1.0,2.0')
-            .expect(200).end((err, res) => {
+        req(server).patch("/api/v1/red-flags/redFlagID/location")
+                .send({redFlagID:1, location: '0,0'})
+                .expect(200).end((err, res) => {
                 if(err) return done(err);
-                assert.ok(res.body.status == 201);
+                //assert.ok(res.body.status == 200);
                 done();
             });
     });
-
-    it('respond with json for PATCH / location', function(done) {
-        req(server)
-          .patch('/api/v1/red-flags/1/1.0, 2.0')
-          .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
-          .expect(200, done);
-      });
 
     //PASSING!
     it('respond with json for POST /', function(done) {
@@ -71,9 +85,6 @@ describe("API Endpoints Test", function(){
         req(server).post('/api/v1/red-flags')
             .set('Connection', 'keep alive')
             .set('Content-Type', 'application/x-www-form-urlencoded')
-            .field('userId',1)
-            .field('postData', 'All Day')
-            .field('type', 'red-flag')
             //.send('userId=1&postData=Allday&type=red-flag')
             .expect(200).end((err, res) => {
                 if(err) return done(err);

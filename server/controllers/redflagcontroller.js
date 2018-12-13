@@ -1,30 +1,27 @@
 import incidents from '../models/incidents.js';
-//import users from '../models/users';
-
-
 
 class RedFlagController {
 	createRedFlag (req, res) {
-		let createdBy = req.params.userId;
-		let date = new Date();
-		let details = req.params.postData;
-		let type = req.params.type;
-	
 		let id = incidents.length + 1;
+		let date = new Date();
+		let flag = false;
 	
 		const post = {
 			id,
-			createdBy,
+			createdBy: "",
 			createdOn: date,
-			comment: details,
-			type,
+			type: "red-flag",
 			"status": "draft",
 			"location": "",
 			images: [],
 		}
 	
 		if(incidents.push(post)){
-			res.json({
+			flag = true;
+		}
+
+		if(flag){
+			res.status(200).json({
 				"status": 201,
 				id,
 				post,
@@ -76,7 +73,8 @@ class RedFlagController {
 			res.json({
 				"status": 200,
 				data,
-			});}
+			});
+		}
 		else{
 			res.send({
 				"status": 404,
@@ -87,7 +85,7 @@ class RedFlagController {
 	
 	//delete a particular red-flag incidents !DONE
 	deleteRedFlag (req, res) {
-		const id = parseInt(req.params.redFlagID, 10);
+		const id = req.params.redFlagID * 1;
 		let flag = false;
 	
 		incidents.map((redEvent, position) => {
@@ -100,7 +98,7 @@ class RedFlagController {
 		if(flag){
 			res.json({
 				status: 201,
-				message: `red-flag incident with id [ ${id} ] was successfully deleted`
+				message: `red-flag incident with id [${id}] was successfully deleted`
 			});
 		}
 			
@@ -115,36 +113,36 @@ class RedFlagController {
 	
 	//add a location for a specific red-flag incident
 	updateLocation (req, res) {
-		const rID = parseInt(req.params.redFlagID, 10);
-		const location = req.params.location;
 		let flag = false;
+		let rID = req.params.redFlagID * 1;
+		let location = undefined;
 
 		for(let incident of incidents){
 			if(incident.id == rID){
-				incident.location = location;
+				incident.location = req.body.location;
 				flag = true;
 			}	
 		}
 
 		if(flag){
 			res.json({
-				status: 201,
-				message: `location for red-flag incident with id [ ${rID} ] was successfully updated.`
+				status: 200,
+				message: `location for red-flag incident with id [${rID}] was successfully updated.`
 			});
 		}
 			
 		else{
 			res.json({
 				status: 404,
-				message: `Sorry, we could't set the location for ${location}`,
+				message: `Could not set the location for ${rID}`,
 			});
 		}		
 	}
 	
 	//add a comment for a specific red-flag record
 	updateComment (req, res) {
-		const rID = parseInt(req.params.redFlagID, 10);
-		const comments = req.params.comment;
+		const rID = req.params.redFlagID * 1;
+		const comments = req.body.comment;
 		let flag = false;
 
 		for(let incident of incidents){
@@ -157,14 +155,14 @@ class RedFlagController {
 		if(flag){
 			res.json({
 				status: 200,
-				message: `Comment for red-flag record [ ${rID} ] was successfully updated`, 
+				message: `Comment for red-flag record [${rID}] was successfully updated`
 			});
 		}
 			
 		else{
 			res.json({
 				status: 404,
-				message: `Sorry, we could't set the comments for ${rID}`,
+				message: `Could not set comments for ${rID}`
 			});
 		}
 		

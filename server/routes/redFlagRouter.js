@@ -1,18 +1,18 @@
 import express from 'express';
 import redFlagController from '../controllers/redflagcontroller';
 
-import {validateDelete, 
-	validateEditComment, 
-	validateEditLocation, 
-	validateGetARed,  
-	validateCreate} from '../middleware/validateRedFlag'
+import {
+			validateDelete, 
+			validateEditComment, 
+			validateEditLocation, 
+			validateGetARed,  
+		} from '../middleware/validateRedFlag';
 
-const router = express.Router();
+
+const router = express.Router({mergeParams: true});
+
 //create a red flag record
-
-router.post('/api/v1/red-flags', validateCreate, redFlagController.createRedFlag);
-
-//router.get('/api/v1/users', controller.getAllUsers);
+router.post('/api/v1/red-flags', redFlagController.createRedFlag);
 
 //return all red-flag incidents. DONE!
 router.get('/api/v1/red-flags', redFlagController.getAllRedFlags);
