@@ -3,6 +3,7 @@ import router from './routes/redFlagRouter';
 
 const server = express();
 
+server.use(express.static('.'));
 server.use(express.json());
 server.use(express.urlencoded({extended:false}));
 

@@ -12,12 +12,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var server = (0, _express2.default)();
 
+server.use(_express2.default.static('.'));
 server.use(_express2.default.json());
 server.use(_express2.default.urlencoded({ extended: false }));
 
 server.use('/', _redFlagRouter2.default);
 
-var port = process.env.PORT || 3000;
+var port = process.env.port || 3000;
 server.listen(port, function () {
   return console.log("Server running on localhost:" + port);
 });
