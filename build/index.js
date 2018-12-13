@@ -1,5 +1,6 @@
 'use strict';
 
+var path = require('path');
 var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
@@ -12,7 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var server = (0, _express2.default)();
 
-server.use(_express2.default.static('../UI'));
+server.use(_express2.default.static(path.join(__dirname + '../UI')));
 server.use(_express2.default.json());
 server.use(_express2.default.urlencoded({ extended: false }));
 
