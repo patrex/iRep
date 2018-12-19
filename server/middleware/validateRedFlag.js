@@ -1,9 +1,9 @@
 import validate from 'validator';
 
     //validate getting a single red-flag id
-    function validateGetARed(request, response, next){
-        if(!request.params.redFlagID){
-            return response.json({
+    function validateOne(request, response, next){
+        if(!request.params.id){
+            return response.status(404).json({
                 status: 404,
                 message: 'You are required to enter a red-flag ID here'
             });
@@ -13,9 +13,9 @@ import validate from 'validator';
     }
 
     //validate location edit
-    function validateEditLocation(request, response, next){
-        if(!request.params.redFlagID){
-            return response.json({
+    function validateLocation(request, response, next){
+        if(!request.params.id){
+            return response.status(404).json({
                 status: 404,
                 message: 'You need to provide a red-flag id'
             });
@@ -29,16 +29,16 @@ import validate from 'validator';
         else next();
     }
     // validate comment edit
-    function validateEditComment(request, response, next){
-        if(!request.params.redFlagID){
-            return response.json({
+    function validateComments(request, response, next){
+        if(!request.params.id){
+            return response.status(404).json({
                 status: 404,
                 message: 'You need to provide a red-flag id'
             });
         }
 
         else if(!request.body.comment){
-            return response.json({
+            return response.status(404).json({
                 status: 404,
                 message: 'You need to provide a comment'
             });
@@ -46,15 +46,4 @@ import validate from 'validator';
         else next();
     }
 
-    //validateDelete
-    function validateDelete(request, response, next){
-        if(!request.params.redFlagID){
-            return response.json({
-                status: 404,
-                message: 'You need to provide red-flag id to delete'
-            });
-            
-        } else next();
-    }
-
-export { validateDelete, validateEditComment, validateEditLocation, validateGetARed }
+export { validateOne, validateComments, validateLocation }

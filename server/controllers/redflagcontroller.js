@@ -11,8 +11,8 @@ class RedFlagController {
 			createdBy: "",
 			createdOn: date,
 			type: "red-flag",
-			"status": "draft",
-			"location": "",
+			status: "draft",
+			location: "",
 			images: [],
 		}
 	
@@ -58,12 +58,12 @@ class RedFlagController {
 	
 	//get a specific red-flag incident. DONE!
 	getARedFlag (req, res) {
-		const redFlagId = parseInt(req.params.redFlagID, 10);
+		const id = parseInt(req.params.id, 10);
 		let flag = false;
 		let data = null;
 	
 		incidents.map( (redIncident) => {
-			if(redIncident.id == redFlagId){
+			if(redIncident.id == id){
 				flag = true;
 				data = redIncident;
 			}		
@@ -85,7 +85,7 @@ class RedFlagController {
 	
 	//delete a particular red-flag incidents !DONE
 	deleteRedFlag (req, res) {
-		const id = req.params.redFlagID * 1;
+		const id = req.params.id * 1;
 		let flag = false;
 	
 		incidents.map((redEvent, position) => {
@@ -114,7 +114,7 @@ class RedFlagController {
 	//add a location for a specific red-flag incident
 	updateLocation (req, res) {
 		let flag = false;
-		let rID = req.params.redFlagID * 1;
+		let rID = req.params.id * 1;
 		let location = undefined;
 
 		for(let incident of incidents){
@@ -141,7 +141,7 @@ class RedFlagController {
 	
 	//add a comment for a specific red-flag record
 	updateComment (req, res) {
-		const rID = req.params.redFlagID * 1;
+		const rID = req.params.id * 1;
 		const comments = req.body.comment;
 		let flag = false;
 
@@ -167,7 +167,12 @@ class RedFlagController {
 		}
 		
 	}
+
+	//accessible if admin
+	updateStatus(req, res){
+
+	}
 }
 
 //const redFlagController = new RedFlagController();
-export default new RedFlagController();
+module.exports = new RedFlagController();

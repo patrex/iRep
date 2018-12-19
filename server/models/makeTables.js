@@ -23,9 +23,9 @@ var tables =
         isAdmin boolean
         );
   
-  CREATE TYPE status AS ENUM('rejected', 'under-investigation', 'resolved');
+   CREATE TYPE status AS ENUM('rejected', 'under-investigation', 'resolved');
    CREATE TYPE type AS ENUM('red-flag', 'incident');
-   CREATE TABLE IF NOT EXISTS
+  CREATE TABLE IF NOT EXISTS
       incidents(
         id SERIAL PRIMARY KEY,
         createdOn date NOT NULL,
@@ -34,12 +34,24 @@ var tables =
         location VARCHAR(10) NOT NULL,
         currentStatus status NOT NULL,
         comments text
-      )`;
+      );
+      
+  CREATE TABLE IF NOT EXISTS
+    images(
+      owner INT NOT NULL,
+      title varchar(128),
+      dateAdded date NOT NULL,
+      foreign key (owner) references users(id),
+      primary key(owner, title)
+    )`
       
 client.query(tables)
   .then(success => console.log('Table(s) created'))
   .then(result => client.end())
-  .catch(console.log);
+  .catch(err => {
+    console.log(err); 
+    client.end()
+  });
 
 module.exports = {
   tables,
