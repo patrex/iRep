@@ -1,5 +1,5 @@
 const assert = require('assert')
-let server = require('../server');
+let server = require('../server/server');
 const req = require('supertest');
 const should = require('chai').should();
 const chaiexpect = require('chai').expect;

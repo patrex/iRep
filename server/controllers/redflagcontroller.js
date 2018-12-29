@@ -61,13 +61,13 @@ class RedFlagController {
 		const id = parseInt(req.params.id, 10);
 		let flag = false;
 		let data = null;
-	
-		incidents.map( (redIncident) => {
-			if(redIncident.id == id){
-				flag = true;
-				data = redIncident;
-			}		
-		});
+		let index = undefined;
+
+		let red_flags = incidents.filter((reds) => reds.type === 'red-flag');
+		if((index = red_flags.findIndex((reds) => reds.id == id)) >= 0){
+			data = red_flags[index];
+			flag = true;
+		}
 
 		if(flag){
 			res.json({

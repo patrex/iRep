@@ -1,4 +1,5 @@
 import  incidents from "../models/incidents";
+//import user from '../models/manageUsers';
 
 class InterventionCtrlr{
     getOne(request, response){
@@ -7,15 +8,9 @@ class InterventionCtrlr{
 		let data = null;
 		let index = undefined;
 	
-		// incidents.map( (interventions) => {
-		// 	if(interventions.id == intervention){
-		// 		flag = true;
-		// 		data = interventions;
-		// 	}		
-		// });
-
-		if(index = incidents.findIndex((incidents) => incidents.id == id)){
-			data = incidents[index];
+		let interventionList = incidents.filter((incident) => incident.type === 'intervention');
+		if((index = interventionList.findIndex((match) => match.id == id)) >= 0){	//find a match
+			data = interventionList[index];
 			flag = true;
 		}
 
@@ -28,7 +23,7 @@ class InterventionCtrlr{
 		else{
 			response.status(404).send({
 				"status": 404,
-				message: "we could not find an intervention incident with that id",
+				message: "No intervention incident with that id",
 			});
 		}
     }
@@ -88,13 +83,13 @@ class InterventionCtrlr{
     updateLoc(request, response){
 		let flag = false;
 		let rID = request.params.id * 1;
+		let index = undefined;
 		//let location = undefined;
 
-		for(let incident of incidents){
-			if(incident.id == rID){
-				incident.location = req.body.location;
+		let interventionList = incidents.filter((incident) => incident.type === 'intervention');
+		if((index = interventionList.findIndex((match) => match.id == rID)) >= 0){	//find a match
+			if(interventionList[index].location = request.body.location);
 				flag = true;
-			}	
 		}
 
 		if(flag){
@@ -114,18 +109,18 @@ class InterventionCtrlr{
 		const rID = request.params.id * 1;
 		const comments = request.body.comment;
 		let flag = false;
+		let index = undefined;
 
-		for(let incident of incidents){
-			if(incident.id == rID){
-				incident.comment = comments;
+		let interventionList = incidents.filter((incident) => incident.type === 'intervention');
+		if((index = interventionList.findIndex((match) => match.id == rID)) >= 0){	//find a match
+			if(interventionList[index].comment = comments);
 				flag = true;
-			}	
 		}
 
 		if(flag){
 			response.json({
 				status: 200,
-				message: `Comment for red-flag record [${rID}] was successfully updated`
+				message: `Comment for red-flag record [${rID}] updated`
 			});
 		}
 			
@@ -158,14 +153,14 @@ class InterventionCtrlr{
 		if(flag){
 			response.status(200).json({
 				status: 200,
-				message: `Intervention incident with id [${id}] was successfully deleted`
+				message: `Intervention incident with id [${id}] deleted`
 			});
 		}
 			
 		else{
 			response.status(404).json({
 				status: 404,
-				message: "Sorry, it appears that there's no intervemtion record with that id",
+				message: "No intervemtion record with that id",
 			});
 		}
 	}
