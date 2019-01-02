@@ -12,7 +12,7 @@ function single(request, response, next){
 }
 
 function validateCreate(request, response, next){
-    if(!request.body.comment){
+    if(!request.body.desc){
         return response.status(400).json({
             status: 400,
             message: 'You cannot create an incident without a description'
@@ -31,7 +31,7 @@ function validateLoc(request, response, next){
     else if(!validate.isLatLong(request.body.location)){
         return response.status(404).json({
             status: 404,
-            message: 'The cordinates you entered are not not valid. Use (lat, long)'
+            message: `The cordinates you entered(${request.body.location}) are not not valid. Use (lat, long)`
         });
     }
     else next();

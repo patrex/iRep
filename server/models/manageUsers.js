@@ -11,15 +11,16 @@ class Users{
 
       try{
         client.connect();
-        let query = `INSERT INTO users(firstname, lastname, othernames, email, phonenumber, registered, isadmin, password, username) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)`
+        let query = `INSERT INTO users(firstname, lastname, othernames, email, phone, registered, is_admin, password, username) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)`
         const values = [ `${usr.firstname}`, `${usr.lastname}`, 
                         `${usr.othernames}`, `${usr.email}`, 
                         `${usr.phone}`, 'now',
                         `${usr.isAdmin}`, `${usr.pwd}`,
                         `${usr.usrname}`
                     ];
-        if(client.query(query, values)) flag = true;
-        return flag;
+        let Result = await client.query(query, values);
+        client.end();
+        return Result;
       }catch(err){
         console.error(err.message);
       }
@@ -40,9 +41,9 @@ class Users{
         client.connect();
         Result = await client.query(sql, values);
         client.end();
-        return Result;
+        return Result.rows;
       } catch(error){
-        console.log(error.message);
+        console.log(error);
       }
     }
 }

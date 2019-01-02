@@ -1,78 +1,86 @@
-import incidents from '../models/incidents.js';
+import reddb from '../models/manageReds';
+import qs from 'querystring';
 
 class RedFlagController {
-	createRedFlag (req, res) {
-		let id = incidents.length + 1;
-		let date = new Date();
-		let flag = false;
+	async createRedFlag (req, res) {
+		let Result;
+		let creator = JSON.parse(req.session.user);
 	
 		const post = {
-			id,
-			createdBy: "",
-			createdOn: date,
-			type: "red-flag",
-			status: "draft",
-			location: "",
-			images: [],
-		}
-	
-		if(incidents.push(post)){
-			flag = true;
+			createdBy: creator.usr,
+			status: "under-investigation",
+			location: "0,0",
+			comment: req.body.desc
 		}
 
-		if(flag){
-			res.status(200).json({
-				"status": 201,
-				id,
-				post,
-				message: "Created red-flag record",
+		Result = await reddb.create(post);
+
+		if(Result.rowCount > 0){
+			const string = qs.stringify({
+				status: 0,
+				msg: 'Redflag incident creation successful'
 			});
+			res.redirect('/redflags?' + string);
 		}
 			
 		else{
-			res.json({
-				status: 500,
-				"message": "Post could not be created at this time.",
-			});
+			const string = qs.stringify({
+				status: 1,
+				msg: 'Redflag creation failed'
+			})
+			res.redirect('/redflags?' + string);
+
+			// res.json({
+			// 	status: 500,
+			// 	"message": "Post could not be created at this time.",
+			// });
 		}
 	}
 	
 	//return all red-flag incidents. DONE!
-	getAllRedFlags (req, res) {
+	async getAllRedFlags (req, res) {
 		//use map to select only red-flag incidents
-		let redFlagIncidents = incidents.filter( (incident) => incident.type == "red-flag" );
-		
-		if(redFlagIncidents.length > 0){
-			res.json({
-				"status": 200,
-				"data"  : redFlagIncidents,
-			});
+		//let redFlagIncidents = incidents.filter( (incident) => incident.type == "red-flag" );
+		let Result = await reddb.returnAll();
+
+		if(Result.rowCount > 0){
+			const string = qs.stringify({
+				status: 0,
+				payload: Result
+			})
+			res.redirect('/redflags?' + string);
+			// res.json({
+			// 	"status": 200,
+			// 	"data"  : Result,
+			// });
 		} 
 		else{
-			res.json({
-				"status": 404,
-				"message": "No red-flag incidents found",
-			});
+			const string = qs.stringify({
+				status: 0,
+				msg: 'There\'s no Redflag incident to view'
+			})
+			res.redirect('/redflags?' + string);
 		}
 	}
 	
 	//get a specific red-flag incident. DONE!
-	getARedFlag (req, res) {
+	async getARedFlag (req, res) {
 		const id = parseInt(req.params.id, 10);
-		let flag = false;
-		let data = null;
-		let index = undefined;
+		let result = undefined;
 
-		let red_flags = incidents.filter((reds) => reds.type === 'red-flag');
-		if((index = red_flags.findIndex((reds) => reds.id == id)) >= 0){
-			data = red_flags[index];
-			flag = true;
-		}
 
-		if(flag){
+		// let red_flags = incidents.filter((reds) => reds.type === 'red-flag');
+		// if((index = red_flags.findIndex((reds) => reds.id == id)) >= 0){
+		// 	data = red_flags[index];
+		// 	flag = true;
+		// }
+
+		result = await reddb.getOne(id);
+
+		if(result.rowCount > 0){
 			res.json({
 				"status": 200,
-				data,
+				data: result
 			});
 		}
 		else{
@@ -84,18 +92,20 @@ class RedFlagController {
 	}
 	
 	//delete a particular red-flag incidents !DONE
-	deleteRedFlag (req, res) {
+	async deleteRedFlag (req, res) {
 		const id = req.params.id * 1;
-		let flag = false;
+		let Result;
 	
-		incidents.map((redEvent, position) => {
-			if(redEvent.id == id){
-				if(incidents.splice(position, 1))	//!
-					flag = true;	
-			}
-		});
+		// incidents.map((redEvent, position) => {
+		// 	if(redEvent.id == id){
+		// 		if(incidents.splice(position, 1))	//!
+		// 			flag = true;	
+		// 	}
+		// });
 
-		if(flag){
+		Result = await reddb.delete(id);
+
+		if(Result.rowCount > 0){
 			res.json({
 				status: 201,
 				message: `red-flag incident with id [${id}] was successfully deleted`
@@ -112,26 +122,33 @@ class RedFlagController {
 	}
 	
 	//add a location for a specific red-flag incident
-	updateLocation (req, res) {
-		let flag = false;
+	async updateLocation (req, res) {
 		let rID = req.params.id * 1;
-		let location = undefined;
+		let location = req.body.location;
+		let Result;
 
-		for(let incident of incidents){
-			if(incident.id == rID){
-				incident.location = req.body.location;
-				flag = true;
-			}	
+		const obj = {
+			rID,
+			location
 		}
 
-		if(flag){
+		Result = await reddb.location(obj);
+
+
+
+		// for(let incident of incidents){
+		// 	if(incident.id == rID){
+		// 		incident.location = req.body.location;
+		// 		flag = true;
+		// 	}	
+		// }
+
+		if(Result.rowCount > 0){
 			res.json({
 				status: 200,
 				message: `location for red-flag incident with id [${rID}] was successfully updated.`
 			});
-		}
-			
-		else{
+		}else{
 			res.json({
 				status: 404,
 				message: `Could not set the location for ${rID}`,
@@ -140,19 +157,20 @@ class RedFlagController {
 	}
 	
 	//add a comment for a specific red-flag record
-	updateComment (req, res) {
+	async updateComment (req, res) {
 		const rID = req.params.id * 1;
 		const comments = req.body.comment;
-		let flag = false;
+		let Result;
 
-		for(let incident of incidents){
-			if(incident.id == rID){
-				incident.comment = comments;
-				flag = true;
-			}	
-		}
+		// for(let incident of incidents){
+		// 	if(incident.id == rID){
+		// 		incident.comment = comments;
+		// 		flag = true;
+		// 	}	
+		// }
+		Result = await reddb.comment({rID, comments});
 
-		if(flag){
+		if(Result.rowCount > 0){
 			res.json({
 				status: 200,
 				message: `Comment for red-flag record [${rID}] was successfully updated`
@@ -169,8 +187,26 @@ class RedFlagController {
 	}
 
 	//accessible if admin
-	updateStatus(req, res){
+	async updateStatus(req, res){
+		const id = res.body.id;
+		const newStatus = req.body.status;
+		let Result;
 
+		Result = await reddb.changeStatus({id, newStatus});
+
+		if(Result.rowCount > 0){
+			res.json({
+				status: 200,
+				message: `Status for redflag record [${rID}] updated`
+			});
+		}
+			
+		else{
+			res.json({
+				status: 404,
+				message: `Could not set status for ${rID}`
+			});
+		}
 	}
 }
 

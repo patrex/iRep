@@ -36,16 +36,6 @@ function checkLogin(request, response, next){
     else next();
 }
 
-function sessionize(request, response, next){
-    if(request.session && request.session.user){
-        request.user = user;
-        request.session.user = user;
-        response.locals.user = user;
-    }else{
-        next();
-    }
-}
-
 function isLoggedIn(request, response, next){
     if(!request.session.user){
         const string = qs.stringify({
@@ -59,15 +49,38 @@ function isLoggedIn(request, response, next){
 }
 
 function verifyAdmin(request, response, next){
-    if(!request.session.user){
-        const string = qs.stringify({
-            status: 1,
-            msg: 'You are not logged in.'
-        });
-        response.redirect('/?' + string);
-    } else if(request.session.user && request.session.user.isadmin == false){
-        response.status(403).send('You don\'t have the authorization to access this route');
-    } else next();
+    const user = request.session.user;
+    const userJSON = JSON.parse(user);
+    const isAdmin = userJSON.isAdmin;
+
+    if(!(isAdmin)){
+        response.status(403).send('You don\'t have authorization to access this route');
+    } 
+    else next();
 }
 
-export {checkReg, checkLogin, verifyAdmin, isLoggedIn}
+function verifyToken(request, response, next){
+    let token = request.session.token;
+    jwt.verify(token, 'secret', (err, res) => {
+        if(err){
+            const string = qs.stringify({
+                status: 1,
+                msg: 'We could not verify you'
+            })
+            response.redirect('/?' + string);
+        }else next();
+    });
+}
+
+function logout(request, response, next){
+    if(request.session.user){
+        if(request.session.token){
+            request.session.destroy();
+            response.redirect('/');
+        }
+    }
+    next();
+}
+
+
+export {checkReg, checkLogin, verifyAdmin, isLoggedIn, verifyToken, logout}

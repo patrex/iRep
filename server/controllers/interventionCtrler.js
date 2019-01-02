@@ -1,20 +1,14 @@
-import  incidents from "../models/incidents";
+import  db from '../models/manageInts'
 //import user from '../models/manageUsers';
 
 class InterventionCtrlr{
-    getOne(request, response){
+    async getOne(request, response){
         const id = request.params.id * 1;
-		let flag = false;
 		let data = null;
-		let index = undefined;
 	
-		let interventionList = incidents.filter((incident) => incident.type === 'intervention');
-		if((index = interventionList.findIndex((match) => match.id == id)) >= 0){	//find a match
-			data = interventionList[index];
-			flag = true;
-		}
+		data = await db.getOne(id);
 
-		if(flag){
+		if(data.length > 0){
 			response.status(200).json({
 				"status": 200,
 				data
@@ -28,71 +22,72 @@ class InterventionCtrlr{
 		}
     }
 
-    getAll(request, response){
-        let interventions = incidents.filter( (incident) => incident.type == "intervention" );
+    async getAll(request, response){
+        let interventions = await db.returnAll();
 		
 		if(interventions.length > 0){
 			response.status(200).json({
-				"status": 200,
-				"data"  : interventions,
+				status: 200,
+				data  : interventions,
 			});
 		} else {
 			response.status(404).json({
-				"status": 404,
-				"message": "No intervention incidents found",
+				status: 404,
+				message: "No intervention incidents found",
 			});
 		}
     }
 
-    create(request, response){
-		let id = incidents.length + 1;
-		let date = new Date();
-		let flag = false;
-	
-		const post = {
-			id,
-			createdBy: "",
-			createdOn: date,
-			type: "intervention",
-			status: "draft",
-			location: "",
-			images: [],
-		}
-	
-		if(incidents.push(post)){
-			flag = true;
-		}
+    async create(request, response){
+		let Result;
 
-		if(flag){
-			response.status(200).json({
-				"status": 201,
-				post,
-				message: "Intervention record created"
+		Result = await db.create({
+			createdBy: request.session.usr,
+			status: 'under-investigation',
+			location: '0,0',
+			comment: request.body.desc
+		});
+
+		if(Result.rowCount > 0){
+			res.status(200).json({
+				status: 200,
+				data: Result.rows
 			});
 		}
 			
 		else{
-			res.json({
-				status: 500,
-				"message": "Intervention record could not be created at this time.",
-			});
-		}
+			const string = qs.stringify({
+				status: 1,
+				msg: 'Redflag creation failed'
+			})
+			res.redirect('/redflags?' + string);
 
+			// res.json({
+			// 	status: 500,
+			// 	"message": "Post could not be created at this time.",
+			// });
+		}
     }
 
-    updateLoc(request, response){
-		let flag = false;
+    async updateLoc(request, response){
 		let rID = request.params.id * 1;
-		let index = undefined;
-		//let location = undefined;
+		let location = request.body.location;
+		let result;
 
-		let interventionList = incidents.filter((incident) => incident.type === 'intervention');
-		if((index = interventionList.findIndex((match) => match.id == rID)) >= 0){	//find a match
-			if(interventionList[index].location = request.body.location);
-				flag = true;
+		const obj = {
+			rID,
+			location
 		}
 
-		if(flag){
+		result = await db.location(obj);
+
+		// let interventionList = incidents.filter((incident) => incident.type === 'intervention');
+		// if((index = interventionList.findIndex((match) => match.id == rID)) >= 0){	//find a match
+		// 	if(interventionList[index].location = request.body.location);
+		// 		flag = true;
+		// }
+
+		if(result.rowCount > 0){
 			response.json({
 				status: 200,
 				message: `location for red-flag incident with id [${rID}] updated.`
@@ -105,22 +100,29 @@ class InterventionCtrlr{
 		}
     }
 
-    updateComment(request, response){
+    async updateComment(request, response){
 		const rID = request.params.id * 1;
 		const comments = request.body.comment;
-		let flag = false;
-		let index = undefined;
+		let result;
 
-		let interventionList = incidents.filter((incident) => incident.type === 'intervention');
-		if((index = interventionList.findIndex((match) => match.id == rID)) >= 0){	//find a match
-			if(interventionList[index].comment = comments);
-				flag = true;
+		const obj = {
+			rID,
+			comments
 		}
 
-		if(flag){
+		result = await db.comment(obj);
+		
+
+		// let interventionList = incidents.filter((incident) => incident.type === 'intervention');
+		// if((index = interventionList.findIndex((match) => match.id == rID)) >= 0){	//find a match
+		// 	if(interventionList[index].comment = comments);
+		// 		flag = true;
+		// }
+
+		if(result.rowCount > 0){
 			response.json({
 				status: 200,
-				message: `Comment for red-flag record [${rID}] updated`
+				message: `Comment for intervention record [${rID}] updated`
 			});
 		}
 			
@@ -135,29 +137,46 @@ class InterventionCtrlr{
 
 
     //accessible if admin
-    updateStatus(request, response){
+    async updateStatus(request, response){
+		const id = request.body.id;
+		const newStatus = request.body.status;
+		let Result;
 
+		Result = await db.changeStatus({id, newStatus});
+
+		if(Result.rowCount > 0){
+			response.json({
+				status: 200,
+				message: `Status for intervention record [${rID}] updated`
+			});
+		}else{
+			response.json({
+				status: 404,
+				message: `Could not set status for ${rID}`
+			});
+		}
 	}
 	
-	delete(request, response){
+	async delete(request, response){
 		const id = request.params.id * 1;
-		let flag = false;
-	
-		incidents.map((intervention, position) => {
-			if(intervention.id == id){
-				if(incidents.splice(position, 1))	//!
-					flag = true;	
-			}
-		});
+		let result;
 
-		if(flag){
+		result = await db.delete(id);
+		
+	
+		// incidents.map((intervention, position) => {
+		// 	if(intervention.id == id){
+		// 		if(incidents.splice(position, 1))	//!
+		// 			flag = true;	
+		// 	}
+		// });
+
+		if(result.rowCount > 0){
 			response.status(200).json({
 				status: 200,
 				message: `Intervention incident with id [${id}] deleted`
 			});
-		}
-			
-		else{
+		}else{
 			response.status(404).json({
 				status: 404,
 				message: "No intervemtion record with that id",

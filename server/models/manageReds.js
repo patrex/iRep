@@ -1,22 +1,39 @@
-import  { Pool } from 'pg';
+import  { Client } from 'pg';
 
 
 //TODO: always check if respective table exists
 class RedFlags{
-    async returnAll(){
+    async returnAll(username){
         const connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
-        const pool = new Pool({
+        const client = new Client({
             connectionString
         });
 
         let sql = `SELECT * FROM redflags`;
+      let Result;
+
+      try{
+        client.connect();
+        Result = await client.query(sql)
+        client.end();
+        return Result.rows;
+      }catch(err){
+        console.error(err.message);
+      }
+
+        
+    }
+
+    async getOne(id){
+      let sql = `SELECT * FROM redflags WHERE id=$1`;
         let Result;
 
         try{
-            pool.connect();
-            Result = pool.query(sql);
-            pool.end().theb(res => {return Result});
+            client.connect();
+            Result = client.query(sql, [`${id}`]);
+            client.end();
+            return Result.rows;
         }catch(err){
             console.error(err.message);
         }
@@ -25,44 +42,47 @@ class RedFlags{
     async create(red){
       const connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
-      const pool = new Pool({
+      const client = new Client({
         connectionString
       });
 
-      let flag = false;
+      let Result;
 
-      let sql = `INSERT INTO redflags VALUES($1, $2, $3, $4)`
+      let sql = `INSERT INTO redflags(creadted_on, created_by, location, current_status, comment) VALUES($1, $2, $3, $4, $5)`;
       const values = [
+        'now',
         `${red.createdBy}`,
-        `now`,
+        `${red.location}`,
         `${red.status}`,
-        `${red.location}`
+        `${red.comment}`
       ];
 
       try{
-        pool.connect();
+        client.connect();
 
-        if(pool.query(sql, values)) flag = true;
-        pool.end().then(res => {return flag});
+        Result = await client.query(sql, values);
+        client.end();
+        return Result;
       }catch(err){
         console.error(err.message);
+        client.end();
       }
     }
 
-    async delete(red){
+    async delete(id){
       const connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
-      let flag = false;
 
-      const pool = new Pool({
+      const client = new Client({
         connectionString
       });
 
       let sql = `DELETE FROM redflags WHERE id=$1`;
 
       try{
-        pool.connect();
-        if(pool.query(sql,red.id)) flag = true;
-        pool.end().then(res => {return flag});
+        client.connect();
+        let Result = await client.query(sql, [id]);
+        client.end();
+        return Result;
       }catch(err){
         console.error(err.message);
       }
@@ -71,20 +91,19 @@ class RedFlags{
     async changeStatus(red){
       const connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
-      const pool = new Pool({
+      const client = new Client({
         connectionString
       });
-
-      let flag = false;
 
       let sql = `UPDATE redflags SET status=$1 WHERE id=$2`;
       let values = [`${red.status}`, `${red.id}`]
 
       try{
-        pool.connect();
+        client.connect();
 
-        if(pool.query(sql, values)) flag = true;
-        pool.end().then(res => {return flag});
+        let Result = await client.query(sql, values);
+        client.end();
+        return Result;
       }catch(err){
         console.error(err.message);
       }
@@ -93,20 +112,19 @@ class RedFlags{
     async comment(red){
       const connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
-      const pool = new Pool({
+      const client = new Client({
         connectionString
       });
-
-      let flag = false;
 
       let sql = `UPDATE redflags SET comment=$1 WHERE id=$2`;
       let values = [`${red.comment}`, `${red.id}`]
 
       try{
-        pool.connect();
+        client.connect();
         
-        if(pool.query(sql, values)) flag = true;
-        pool.end().then(res => {return flag});
+        let Result = await client.query(sql, values);
+        client.end();
+        return Result;
       }catch(err){
         console.error(err.message);
       }
@@ -115,20 +133,25 @@ class RedFlags{
     async location(red){
       const connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
-      const pool = new Pool({
+      const client = new Client({
         connectionString
       });
 
-      let flag = false;
+      let [a, b] = int.location.split(',');
+      let Result;
 
-      let sql = `UPDATE redflags SET location=$1 WHERE id=$2`;
-      let values = [`${red.location}`, `${red.id}`]
+      let sql = `UPDATE redflags SET location=point($1,$2) WHERE id=$3`;
+      let values = [`${a}`,
+                    `${b}`,
+                    `${red.rID}`
+                  ]
 
       try{
-        pool.connect();
+        client.connect();
         
-        if(pool.query(sql, values)) flag = true;
-        pool.end().then(res => {return flag});
+        Result = await client.query(sql, values);
+        client.end()
+        return Result;
       }catch(err){
         console.error(err.message);
       }

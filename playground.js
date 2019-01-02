@@ -37,8 +37,9 @@ import bc from 'bcryptjs';
 //     let passwordHash = await resolve(bc.hash(pwd, 10))
 // })
 
-let a = 67;
-console.log(`"the value of a is ${a}"`)
+let a = '1,2';
+let [b,c] = a.split(',');
+console.log(b, c);
 
 
 //console.log(new Date('1999', '10').toDateString())

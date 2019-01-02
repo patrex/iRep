@@ -8,6 +8,7 @@ class User{
         const pwd = request.body.psw;
         var firstname1 = request.body.fname;
         let passwordHash = undefined;
+        let Result;
 
         let hash0 = new Promise((resolve) => {
             resolve(bc.hash(pwd, 10))
@@ -26,7 +27,10 @@ class User{
             usrname: firstname1.toLowerCase() + (new Date().getTime() % 1000).toString()
         }
 
-        if(users.addUser(user)){
+        Result = await users.addUser(user);
+
+        if(Result.rowCount > 0){
+            
             const string = qs.stringify({
                 status: 0,
                 msg: 'Account creation successful'
@@ -46,26 +50,32 @@ class User{
         const pwd = request.body.pwd;
 
         let Result;
-        let token;
 
-        const data = {
-            usr,
-            pwd
-        }
-
-        Result = await users.fetchData(data);
+        Result = await users.fetchData({usr, pwd});
 
         try{
-            let verify = await bc.compare(pwd, Result.rows[0].password);
-            if(verify === true){
-                const user = {
-                    usr: Result.rows[0].username,
-                    isAdmin: Result.rows[0].isadmin
-                }
-                token = await jwt.sign(data.usr, 'secret');
-                request.session.user = JSON.stringify(user);
-                response.redirect('/profile');
-            }  
+            bc.compare(pwd, Result[0].password)
+                .then((res) => {
+                    if(res == true){
+                        const user = {
+                            usr: Result[0].username,
+                            isAdmin: Result[0].is_admin
+                        }
+                        let token = jwt.sign(user, 'secret');
+                        request.session.user = JSON.stringify(user);
+                        request.session.token = token;
+                        console.log(request.session.user);
+                        console.log(request.session.token);
+                        
+                        response.redirect('/profile');
+                    }else{
+                        const string = qs.stringify({
+                            status: 1,
+                            msg: 'Authentication failed'
+                        })
+                        response.redirect('/?' + string);
+                    }
+                });
         }catch(err){
             const string = qs.stringify({
                 status: 1,
