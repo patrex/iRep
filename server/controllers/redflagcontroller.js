@@ -43,16 +43,16 @@ class RedFlagController {
 		//let redFlagIncidents = incidents.filter( (incident) => incident.type == "red-flag" );
 		let Result = await reddb.returnAll();
 
-		if(Result.rowCount > 0){
-			const string = qs.stringify({
-				status: 0,
-				payload: Result
-			})
-			res.redirect('/redflags?' + string);
-			// res.json({
-			// 	"status": 200,
-			// 	"data"  : Result,
-			// });
+		if(Result.length > 0){
+			// const string = qs.stringify({
+			// 	status: 0,
+			// 	payload: Result
+			// })
+			//res.redirect('/redflags?' + string);
+			res.json({
+				"status": 200,
+				Result,
+			});
 		} 
 		else{
 			const string = qs.stringify({
