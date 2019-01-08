@@ -1,14 +1,14 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _incidents = require("../models/incidents.js");
+var _manageReds = require('../models/manageReds');
 
-var _incidents2 = _interopRequireDefault(_incidents);
+var _manageReds2 = _interopRequireDefault(_manageReds);
+
+var _querystring = require('querystring');
+
+var _querystring2 = _interopRequireDefault(_querystring);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20,84 +20,88 @@ var RedFlagController = function () {
 	}
 
 	_createClass(RedFlagController, [{
-		key: "createRedFlag",
-		value: function createRedFlag(req, res) {
-			var id = _incidents2.default.length + 1;
-			var date = new Date();
-			var flag = false;
+		key: 'createRedFlag',
+		value: async function createRedFlag(req, res) {
+			var Result = void 0;
+			var creator = JSON.parse(req.session.user);
 
 			var post = {
-				id: id,
-				createdBy: "",
-				createdOn: date,
-				type: "red-flag",
-				"status": "draft",
-				"location": "",
-				images: []
+				createdBy: creator.usr,
+				status: "under-investigation",
+				location: "0,0",
+				comment: req.body.desc
 			};
 
-			if (_incidents2.default.push(post)) {
-				flag = true;
-			}
+			Result = await _manageReds2.default.create(post);
 
-			if (flag) {
-				res.status(200).json({
-					"status": 201,
-					id: id,
-					post: post,
-					message: "Created red-flag record"
+			if (Result.rowCount > 0) {
+				var string = _querystring2.default.stringify({
+					status: 0,
+					msg: 'Redflag incident creation successful'
 				});
+				res.redirect('/redflags?' + string);
 			} else {
-				res.json({
-					status: 500,
-					"message": "Post could not be created at this time."
+				var _string = _querystring2.default.stringify({
+					status: 1,
+					msg: 'Redflag creation failed'
 				});
+				res.redirect('/redflags?' + _string);
+
+				// res.json({
+				// 	status: 500,
+				// 	"message": "Post could not be created at this time.",
+				// });
 			}
 		}
 
 		//return all red-flag incidents. DONE!
 
 	}, {
-		key: "getAllRedFlags",
-		value: function getAllRedFlags(req, res) {
+		key: 'getAllRedFlags',
+		value: async function getAllRedFlags(req, res) {
 			//use map to select only red-flag incidents
-			var redFlagIncidents = _incidents2.default.filter(function (incident) {
-				return incident.type == "red-flag";
-			});
+			//let redFlagIncidents = incidents.filter( (incident) => incident.type == "red-flag" );
+			var Result = await _manageReds2.default.returnAll();
 
-			if (redFlagIncidents.length > 0) {
+			if (Result.length > 0) {
+				// const string = qs.stringify({
+				// 	status: 0,
+				// 	payload: Result
+				// })
+				//res.redirect('/redflags?' + string);
 				res.json({
 					"status": 200,
-					"data": redFlagIncidents
+					Result: Result
 				});
 			} else {
-				res.json({
-					"status": 404,
-					"message": "No red-flag incidents found"
+				var string = _querystring2.default.stringify({
+					status: 0,
+					msg: 'There\'s no Redflag incident to view'
 				});
+				res.redirect('/redflags?' + string);
 			}
 		}
 
 		//get a specific red-flag incident. DONE!
 
 	}, {
-		key: "getARedFlag",
-		value: function getARedFlag(req, res) {
-			var redFlagId = parseInt(req.params.redFlagID, 10);
-			var flag = false;
-			var data = null;
+		key: 'getARedFlag',
+		value: async function getARedFlag(req, res) {
+			var id = parseInt(req.params.id, 10);
+			var result = undefined;
 
-			_incidents2.default.map(function (redIncident) {
-				if (redIncident.id == redFlagId) {
-					flag = true;
-					data = redIncident;
-				}
-			});
+			// let red_flags = incidents.filter((reds) => reds.type === 'red-flag');
+			// if((index = red_flags.findIndex((reds) => reds.id == id)) >= 0){
+			// 	data = red_flags[index];
+			// 	flag = true;
+			// }
 
-			if (flag) {
+			result = await _manageReds2.default.getOne(id);
+
+			if (result.rowCount > 0) {
 				res.json({
 					"status": 200,
-					data: data
+					data: result
 				});
 			} else {
 				res.send({
@@ -110,22 +114,24 @@ var RedFlagController = function () {
 		//delete a particular red-flag incidents !DONE
 
 	}, {
-		key: "deleteRedFlag",
-		value: function deleteRedFlag(req, res) {
-			var id = req.params.redFlagID * 1;
-			var flag = false;
+		key: 'deleteRedFlag',
+		value: async function deleteRedFlag(req, res) {
+			var id = req.params.id * 1;
+			var Result = void 0;
 
-			_incidents2.default.map(function (redEvent, position) {
-				if (redEvent.id == id) {
-					if (_incidents2.default.splice(position, 1)) //!
-						flag = true;
-				}
-			});
+			// incidents.map((redEvent, position) => {
+			// 	if(redEvent.id == id){
+			// 		if(incidents.splice(position, 1))	//!
+			// 			flag = true;	
+			// 	}
+			// });
 
-			if (flag) {
+			Result = await _manageReds2.default.delete(id);
+
+			if (Result.rowCount > 0) {
 				res.json({
 					status: 201,
-					message: "red-flag incident with id [" + id + "] was successfully deleted"
+					message: 'red-flag incident with id [' + id + '] was successfully deleted'
 				});
 			} else {
 				res.json({
@@ -138,49 +144,35 @@ var RedFlagController = function () {
 		//add a location for a specific red-flag incident
 
 	}, {
-		key: "updateLocation",
-		value: function updateLocation(req, res) {
-			var flag = false;
-			var rID = req.params.redFlagID * 1;
-			var location = undefined;
+		key: 'updateLocation',
+		value: async function updateLocation(req, res) {
+			var rID = req.params.id * 1;
+			var location = req.body.location;
+			var Result = void 0;
 
-			var _iteratorNormalCompletion = true;
-			var _didIteratorError = false;
-			var _iteratorError = undefined;
+			var obj = {
+				rID: rID,
+				location: location
+			};
 
-			try {
-				for (var _iterator = _incidents2.default[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-					var incident = _step.value;
+			Result = await _manageReds2.default.location(obj);
 
-					if (incident.id == rID) {
-						incident.location = req.body.location;
-						flag = true;
-					}
-				}
-			} catch (err) {
-				_didIteratorError = true;
-				_iteratorError = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion && _iterator.return) {
-						_iterator.return();
-					}
-				} finally {
-					if (_didIteratorError) {
-						throw _iteratorError;
-					}
-				}
-			}
+			// for(let incident of incidents){
+			// 	if(incident.id == rID){
+			// 		incident.location = req.body.location;
+			// 		flag = true;
+			// 	}	
+			// }
 
-			if (flag) {
+			if (Result.rowCount > 0) {
 				res.json({
 					status: 200,
-					message: "location for red-flag incident with id [" + rID + "] was successfully updated."
+					message: 'location for red-flag incident with id [' + rID + '] was successfully updated.'
 				});
 			} else {
 				res.json({
 					status: 404,
-					message: "Could not set the location for " + rID
+					message: 'Could not set the location for ' + rID
 				});
 			}
 		}
@@ -188,49 +180,53 @@ var RedFlagController = function () {
 		//add a comment for a specific red-flag record
 
 	}, {
-		key: "updateComment",
-		value: function updateComment(req, res) {
-			var rID = req.params.redFlagID * 1;
+		key: 'updateComment',
+		value: async function updateComment(req, res) {
+			var rID = req.params.id * 1;
 			var comments = req.body.comment;
-			var flag = false;
+			var Result = void 0;
 
-			var _iteratorNormalCompletion2 = true;
-			var _didIteratorError2 = false;
-			var _iteratorError2 = undefined;
+			// for(let incident of incidents){
+			// 	if(incident.id == rID){
+			// 		incident.comment = comments;
+			// 		flag = true;
+			// 	}	
+			// }
+			Result = await _manageReds2.default.comment({ rID: rID, comments: comments });
 
-			try {
-				for (var _iterator2 = _incidents2.default[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-					var incident = _step2.value;
-
-					if (incident.id == rID) {
-						incident.comment = comments;
-						flag = true;
-					}
-				}
-			} catch (err) {
-				_didIteratorError2 = true;
-				_iteratorError2 = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion2 && _iterator2.return) {
-						_iterator2.return();
-					}
-				} finally {
-					if (_didIteratorError2) {
-						throw _iteratorError2;
-					}
-				}
-			}
-
-			if (flag) {
+			if (Result.rowCount > 0) {
 				res.json({
 					status: 200,
-					message: "Comment for red-flag record [" + rID + "] was successfully updated"
+					message: 'Comment for red-flag record [' + rID + '] was successfully updated'
 				});
 			} else {
 				res.json({
 					status: 404,
-					message: "Could not set comments for " + rID
+					message: 'Could not set comments for ' + rID
+				});
+			}
+		}
+
+		//accessible if admin
+
+	}, {
+		key: 'updateStatus',
+		value: async function updateStatus(req, res) {
+			var id = res.body.id;
+			var newStatus = req.body.status;
+			var Result = void 0;
+
+			Result = await _manageReds2.default.changeStatus({ id: id, newStatus: newStatus });
+
+			if (Result.rowCount > 0) {
+				res.json({
+					status: 200,
+					message: 'Status for redflag record [' + rID + '] updated'
+				});
+			} else {
+				res.json({
+					status: 404,
+					message: 'Could not set status for ' + rID
 				});
 			}
 		}
@@ -242,4 +238,4 @@ var RedFlagController = function () {
 //const redFlagController = new RedFlagController();
 
 
-exports.default = new RedFlagController();
+module.exports = new RedFlagController();

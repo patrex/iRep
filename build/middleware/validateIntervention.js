@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.validateLocation = exports.validateComments = exports.validateOne = undefined;
+exports.validateCreate = exports.validateComment = exports.validateLoc = exports.single = undefined;
 
 var _validator = require('validator');
 
@@ -12,35 +12,44 @@ var _validator2 = _interopRequireDefault(_validator);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //validate getting a single red-flag id
-function validateOne(request, response, next) {
+function single(request, response, next) {
     if (!request.params.id) {
         return response.status(404).json({
             status: 404,
-            message: 'You are required to enter a red-flag ID here'
+            message: 'No intervention ID entered.'
+        });
+    } else next();
+}
+
+function validateCreate(request, response, next) {
+    if (!request.body.desc) {
+        return response.status(400).json({
+            status: 400,
+            message: 'You cannot create an incident without a description'
         });
     } else next();
 }
 
 //validate location edit
-function validateLocation(request, response, next) {
+function validateLoc(request, response, next) {
     if (!request.params.id) {
         return response.status(404).json({
             status: 404,
-            message: 'You need to provide a red-flag id'
+            message: 'You need to provide a intervention id'
         });
     } else if (!_validator2.default.isLatLong(request.body.location)) {
         return response.status(404).json({
-            status: 400,
-            message: 'The cordinates you entered are not not valid. Use (lat, long)'
+            status: 404,
+            message: 'The cordinates you entered(' + request.body.location + ') are not not valid. Use (lat, long)'
         });
     } else next();
 }
 // validate comment edit
-function validateComments(request, response, next) {
+function validateComment(request, response, next) {
     if (!request.params.id) {
         return response.status(404).json({
             status: 404,
-            message: 'You need to provide a red-flag id'
+            message: 'You need to provide an intervention id'
         });
     } else if (!request.body.comment) {
         return response.status(404).json({
@@ -50,6 +59,7 @@ function validateComments(request, response, next) {
     } else next();
 }
 
-exports.validateOne = validateOne;
-exports.validateComments = validateComments;
-exports.validateLocation = validateLocation;
+exports.single = single;
+exports.validateLoc = validateLoc;
+exports.validateComment = validateComment;
+exports.validateCreate = validateCreate;
