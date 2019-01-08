@@ -46,6 +46,7 @@ class User{
     }
 
     async logUserIn(request, response){
+        let active = 0;
         const usr = request.body.username;
         const pwd = request.body.pwd;
 
@@ -64,10 +65,16 @@ class User{
                         let token = jwt.sign(user, 'secret');
                         request.session.user = JSON.stringify(user);
                         request.session.token = token;
-                        console.log(request.session.user);
-                        console.log(request.session.token);
+                        active += 1;
+                        console.log('Active users: ' + active);
+                        console.log(request.session.usr);
+
+                        const username = qs.stringify({
+                            user: user.usr
+                        });
+
                         
-                        response.redirect('/profile');
+                        response.redirect('/profile?' + username);
                     }else{
                         const string = qs.stringify({
                             status: 1,

@@ -1,5 +1,6 @@
 // import jwt from 'jsonwebtoken';
 import bc from 'bcryptjs';
+import counts from './server/utils/counts';
 
 // const person = {
 //     name: 'Joel',
@@ -37,9 +38,9 @@ import bc from 'bcryptjs';
 //     let passwordHash = await resolve(bc.hash(pwd, 10))
 // })
 
-let a = '1,2';
-let [b,c] = a.split(',');
-console.log(b, c);
+// let a = '1,2';
+// let [b,c] = a.split(',');
+// console.log(b, c);
 
-
+console.log(counts);
 //console.log(new Date('1999', '10').toDateString())

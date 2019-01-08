@@ -3,6 +3,7 @@ import redCtrlr from '../controllers/redflagcontroller';
 import interCtrlr from '../controllers/interventionCtrler';
 import usrs from '../controllers/users';
 import path from 'path';
+import counters from '../models/counts';
 
 //red-flag validators
 import {
@@ -89,6 +90,6 @@ router.delete('/api/v1/interventions/:id', isLoggedIn, single, verifyToken, inte
 router.post('/api/v1/auth/signup', checkReg, usrs.createUser);
 router.post('/api/v1/auth/login', checkLogin, usrs.logUserIn);
 router.get('/api/v1/auth/logout', isLoggedIn, logout);
-
+router.get('/api/v1/count', counters);
 
 module.exports = router;
