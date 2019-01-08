@@ -6,4 +6,3 @@ you can raise an Intervention Flag.
 In this way the public is always kept abreast of the state of public projects and also of
 erring government officials.
 In our own little way, we can roll-back corruption.
-Thank you.
