@@ -24,7 +24,8 @@ var Incidents = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = "SELECT * FROM interventions";
@@ -45,7 +46,8 @@ var Incidents = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = "SELECT * FROM interventions WHERE id=$1";
@@ -67,7 +69,8 @@ var Incidents = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = "INSERT INTO interventions(created_by, creadted_on, current_status, location, comment) VALUES($1, $2, $3, $4, $5)";
@@ -87,7 +90,8 @@ var Incidents = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = "DELETE FROM interventions WHERE id=$1";
@@ -107,7 +111,8 @@ var Incidents = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var Result = void 0;
@@ -131,7 +136,8 @@ var Incidents = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var Result = void 0;
@@ -155,7 +161,8 @@ var Incidents = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var _int$location$split = int.location.split(','),
