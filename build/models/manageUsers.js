@@ -28,7 +28,7 @@ var Users = function () {
 
       try {
         client.connect();
-        var query = 'INSERT INTO users(firstname, lastname, othernames, email, phone, registered, is_admin, password, username) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)';
+        var query = 'INSERT INTO users(firstname, lastname, othernames, email, phone, registered, isadmin, password, username) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)';
         var values = ['' + usr.firstname, '' + usr.lastname, '' + usr.othernames, '' + usr.email, '' + usr.phone, 'now', '' + usr.isAdmin, '' + usr.pwd, '' + usr.usrname];
         var Result = await client.query(query, values);
         client.end();
