@@ -5,7 +5,8 @@ var _pg = require('pg');
 var connectionString = process.env.DATABASE_URL;
 
 var client = new _pg.Client({
-    connectionString: connectionString
+    connectionString: connectionString,
+    ssl: true,
 });
 
 var sql = 'drop table images, interventions, redflags, users; drop type status';
