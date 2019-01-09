@@ -21,7 +21,7 @@ var RedFlags = function () {
   _createClass(RedFlags, [{
     key: "returnAll",
     value: async function returnAll(username) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
@@ -57,7 +57,7 @@ var RedFlags = function () {
   }, {
     key: "create",
     value: async function create(red) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
@@ -82,7 +82,7 @@ var RedFlags = function () {
   }, {
     key: "delete",
     value: async function _delete(id) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
@@ -102,7 +102,7 @@ var RedFlags = function () {
   }, {
     key: "changeStatus",
     value: async function changeStatus(red) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
@@ -124,7 +124,7 @@ var RedFlags = function () {
   }, {
     key: "comment",
     value: async function comment(red) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
@@ -146,7 +146,7 @@ var RedFlags = function () {
   }, {
     key: "location",
     value: async function location(red) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
