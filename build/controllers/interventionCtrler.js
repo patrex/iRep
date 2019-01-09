@@ -61,7 +61,7 @@ var InterventionCtrlr = function () {
 
 			Result = await _manageInts2.default.create({
 				createdBy: request.session.usr,
-				status: 'under-investigation',
+				status: 'draft',
 				location: '0,0',
 				comment: request.body.desc
 			});
