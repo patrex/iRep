@@ -39,7 +39,6 @@ const content = document.getElementById('content');
 
 function loadData(){
     let payload = undefined;
-    let html;
     const xhr = new XMLHttpRequest();
     xhr.open('GET', '/api/v1/count', true);
     xhr.send();
@@ -47,7 +46,7 @@ function loadData(){
     xhr.onload = () => {
         if(xhr.status != 200){
             console.log('There was an error: ' + xhr.statusText);
-            html = `
+            const html = `
                 <div class="cover">
                     <div class="info-box">  
                         <div class="box-data">0</div>
@@ -124,9 +123,10 @@ function loadData(){
                 </div> 
 
                 `
+            content.insertAdjacentHTML("afterbegin", html);
         }else{
             payload = JSON.parse(xhr.responseText);
-            html = `
+            const html = `
                 <div class="cover">
                     <div class="info-box">  
                         <div class="box-data">${payload.countAllRed}</div>
@@ -202,9 +202,10 @@ function loadData(){
                     <div class="pellet-data">${payload.countDraftInt}</div>
                 </div> 
 
-                `    
+                `
+            content.insertAdjacentHTML("afterbegin", html);
         }
     }
-    content.insertAdjacentHTML("afterbegin", html);
+    
 }
 
