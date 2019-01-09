@@ -19,7 +19,7 @@ var Users = function () {
     key: 'addUser',
     value: async function addUser(usr) {
       var flag = false;
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
@@ -40,7 +40,7 @@ var Users = function () {
     key: 'fetchData',
     value: async function fetchData(login) {
       var Result = void 0;
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
