@@ -21,7 +21,7 @@ var Incidents = function () {
   _createClass(Incidents, [{
     key: "returnAll",
     value: async function returnAll() {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
@@ -42,7 +42,7 @@ var Incidents = function () {
   }, {
     key: "getOne",
     value: async function getOne(id) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
@@ -64,7 +64,7 @@ var Incidents = function () {
   }, {
     key: "create",
     value: async function create(int) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
@@ -84,7 +84,7 @@ var Incidents = function () {
   }, {
     key: "delete",
     value: async function _delete(id) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
@@ -104,7 +104,7 @@ var Incidents = function () {
   }, {
     key: "changeStatus",
     value: async function changeStatus(int) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
@@ -128,7 +128,7 @@ var Incidents = function () {
   }, {
     key: "comment",
     value: async function comment(int) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
@@ -152,7 +152,7 @@ var Incidents = function () {
   }, {
     key: "location",
     value: async function location(int) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
         connectionString: connectionString
