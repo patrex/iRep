@@ -46,6 +46,83 @@ function loadData(){
     xhr.onload = () => {
         if(xhr.status != 200){
             console.log('There was an error: ' + xhr.statusText);
+            const html = `
+                <div class="cover">
+                    <div class="info-box">  
+                        <div class="box-data">0</div>
+                        <div class="box-title">Red-flags</div> 
+                    </div>
+
+                    <div class="pellet">Redflag incidents</div>
+                    <div class="pellet-data">0</div>
+                </div>
+
+                <div class="cover">
+                    <div class="info-box">
+                        <div class="box-data">0</div>
+                        <div class="box-title">Interventions</div>
+                    </div>
+                    <div class="pellet">Interventions</div>
+                    <div class="pellet-data">0</div>
+                </div>
+
+
+                <div class="cover">
+                    <div class="info-box">
+                        <div class="box-data">0</div>
+                        <div class="box-title">Reds Resolved</div>
+                    </div>
+                    <div class="pellet">Redflags Resolved</div>
+                    <div class="pellet-data">0</div>
+                </div>
+
+                <div class="cover">
+                    <div class="info-box">
+                        <div class="box-data">0</div>
+                        <div class="box-title">Ints Resolved</div>
+                    </div>
+                    <div class="pellet">Interventions Resolved</div>
+                    <div class="pellet-data">0</div>
+                </div>
+
+                <div class="cover">
+                    <div class="info-box">
+                        <div class="box-data">0</div>
+                        <div class="box-title">Reds Rejected</div>
+                    </div>
+
+                    <div class="pellet">Redflags Rejected</div>
+                    <div class="pellet-data">0</div>
+                </div>
+            
+                <div class="cover">
+                    <div class="info-box">
+                        <div class="box-data">0</div>
+                        <div class="box-title">Ints Rejected</div>
+                    </div> 
+                    <div class="pellet">Interventions Rejected</div>
+                    <div class="pellet-data">0</div>
+                </div> 
+
+                <div class="cover">
+                    <div class="info-box">
+                        <div class="box-data">0</div>
+                        <div class="box-title">Reds Draft</div>
+                    </div> 
+                    <div class="pellet">Redflags In Draft</div>
+                    <div class="pellet-data">0</div>
+                </div>
+
+                <div class="cover">
+                    <div class="info-box">
+                        <div class="box-data">0</div>
+                        <div class="box-title">Ints Draft</div>
+                    </div>
+                    <div class="pellet">Interventions in Draft</div>
+                    <div class="pellet-data">0</div>
+                </div> 
+
+                `
         }else{
             payload = JSON.parse(xhr.responseText);
             const html = `
@@ -124,10 +201,9 @@ function loadData(){
                     <div class="pellet-data">${payload.countDraftInt}</div>
                 </div> 
 
-                `
-
-                content.insertAdjacentHTML("afterbegin", html);
+                `    
         }
     }
+    content.insertAdjacentHTML("afterbegin", html);
 }
 
