@@ -1,4 +1,5 @@
 'use strict';
+var active = 0;
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -76,7 +77,6 @@ var User = function () {
     }, {
         key: 'logUserIn',
         value: async function logUserIn(request, response) {
-            var active = 0;
             var usr = request.body.username;
             var pwd = request.body.pwd;
 
@@ -94,9 +94,8 @@ var User = function () {
                         var token = _jsonwebtoken2.default.sign(user, 'secret');
                         request.session.user = JSON.stringify(user);
                         request.session.token = token;
-                        active += 1;
+                        ++active;
                         console.log('Active users: ' + active);
-                        console.log(request.session.usr);
 
                         var username = _querystring2.default.stringify({
                             user: user.usr
