@@ -6,7 +6,8 @@ async function counters(req, res) {
     var connectionString = process.env.DATABASE_URL;
 
     var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
     });
 
     var redAll = "SELECT COUNT(*) FROM redflags";
