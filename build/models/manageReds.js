@@ -24,7 +24,8 @@ var RedFlags = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = "SELECT * FROM redflags";
@@ -60,7 +61,8 @@ var RedFlags = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var Result = void 0;
@@ -85,7 +87,8 @@ var RedFlags = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = "DELETE FROM redflags WHERE id=$1";
@@ -105,7 +108,8 @@ var RedFlags = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = "UPDATE redflags SET status=$1 WHERE id=$2";
@@ -127,7 +131,8 @@ var RedFlags = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = "UPDATE redflags SET comment=$1 WHERE id=$2";
@@ -149,7 +154,8 @@ var RedFlags = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var _int$location$split = int.location.split(','),
