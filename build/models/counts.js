@@ -3,7 +3,7 @@
 var _pg = require("pg");
 
 async function counters(req, res) {
-    var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+    var connectionString = process.env.DATABASE_URL;
 
     var client = new _pg.Client({
         connectionString: connectionString
