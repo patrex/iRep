@@ -22,7 +22,8 @@ var Users = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       try {
@@ -43,7 +44,8 @@ var Users = function () {
       var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = 'SELECT * FROM users WHERE username=$1';
