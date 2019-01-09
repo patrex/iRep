@@ -1,0 +1,280 @@
+body{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+/* style navigation */
+nav{
+  padding-left: 5px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  height: 3.0em;
+  filter:alpha(opacity=80);
+  opacity: .8;
+  white-space: nowrap;
+}
+
+#logo{
+  font-size: 200%;
+  text-decoration: none;
+  margin-right: 40%;
+}
+
+.nav-item{
+  font-size: 120%;
+  margin: auto 7px;
+  display: inline;
+}
+
+nav a{
+  text-decoration: none;
+  color: white;
+}
+
+nav a:hover{
+  color: gray;
+}
+
+#menu{
+  display: none;
+  cursor: pointer;
+}
+
+#errs{
+  width: 60%;
+  height: 2em;
+  margin: 0 auto;
+  display: none;
+  padding-right: .5em;
+}
+
+#icon-err{
+  display: none;
+  border: red solid .1em;
+  background: crimson;
+  float: left;
+  margin-right: .5em;
+}
+
+#icon-success{
+  display: none;
+  border: green solid .1em;
+  background: limegreen;
+  float: left;
+  height: 95%;
+  margin-right: .5em;
+}
+
+#close_flash{
+  background: black;
+  color: white;
+  float: right;
+  font-weight: bold;
+  margin-top: .4em;
+}
+
+#close_flash:hover{
+  background: red;
+  cursor: pointer;
+}
+
+.login-btn{
+  margin: 30px 20px;
+}
+
+
+
+/* style landing page */
+main{
+  min-height: 400px;
+  width: 60%;
+  margin: 3em auto;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 0px;
+}
+
+
+.form-input{
+  margin: 1.0em 0;
+  padding-left: .1em;
+  width: 70%;
+  height: 20px;
+}
+
+.abcRioButton{
+  margin: 0 auto;
+}
+
+/* control modal */
+:root {
+  --modal-duration: 1s;
+  --modal-color: white;
+}
+  
+.button {
+  background: #384552;
+  padding: 1em 2em;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+  
+.button:hover {
+  background: #3876ac;
+}
+  
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, .5);
+}
+  
+.modal-content {
+  margin: 5% auto;
+  width: 40%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, .2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+  
+.modal-header h2,
+.modal-footer h3 {
+  margin: 0;
+  font-size: 80%;
+  font-weight: 100;
+}
+  
+.modal-header {
+  background: var(--modal-color);
+  padding: 15px;
+  color: black;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+  
+.modal-body {
+  padding: 10px 20px;
+  background: #fff;
+}
+  
+.modal-footer {
+  background: white;
+  padding: 10px;
+  color: black;
+  text-align: center;
+}
+  
+.close {
+  color: black;
+  float: right;
+  font-size: 30px;
+}
+  
+.close:hover,
+.close:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* configure Google Sign in button */
+.g-signin2{
+  width: 45%;
+  margin: 2em auto;
+}
+
+#line-div{
+  width: 60%;
+}
+
+#spring-menu{
+  position: absolute;
+  margin-top: 3px;
+  width: 50%;
+  height: 70%;
+  background: rgb(39, 38, 38);
+  text-align: left;
+  overflow: hidden;
+  display: none;
+}
+
+.spring-item{
+  border-bottom: white solid .1em;
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin-bottom: .3em;
+  padding-left: 5px;
+  font-weight: bold;
+  height: 2em;
+  border-left: red solid .5em;
+  /* vertical-align: bottom; */
+}
+ 
+/* Hide spring-item content */
+.spring-item{
+  display: none;
+}
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spring{
+  100%{
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 650px ){
+  main{
+    width: 100%;
+    margin: .1em .2em;
+    border-radius: 0px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 1em 0px;
+  }
+
+  nav{
+    width: 100%;
+    border-radius: 0px;
+    padding-right: 2px;
+  }
+
+  #menu{
+    display: inline;
+    position: absolute;
+    top: 20px;
+    right: 15px;
+  }
+
+  .login-btn{
+    display: block;
+    margin: 2em auto;
+  }
+
+  .nav-item{
+    display: none;
+  }
+
+  .modal-content{
+    width: 80%;
+  }
+}

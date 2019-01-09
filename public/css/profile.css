@@ -1,0 +1,239 @@
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: white;
+    position: relative;
+}
+
+main{
+    min-height: 550px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+#welcome-user{
+    float: left;
+    height: 100%;
+    padding-left: 5px;
+}
+
+#menu{
+    background: black;
+    color: white;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-right: .4em;
+    white-space: nowrap;
+}
+
+#content{
+    background: grey;
+    flex-grow: 2;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#user{
+    background: #c4d0f8;
+    height: 30px;
+    text-align: right;
+    padding-right: 5px;
+    line-height: 200%;
+    white-space: nowrap;
+}
+
+.add-icon{
+    height: 15px;
+    
+}
+
+#sign-out{
+    height: 15px;
+}
+
+#user-id{
+    display: inline;
+    text-align: left;
+    cursor: pointer;
+}
+
+#spring-menu{
+    display: none;
+    position: absolute;
+    margin-top: 3px;
+    width: 70%;
+    min-height: 70%;
+    background: rgb(39, 38, 38);
+    text-align: left;
+    overflow: hidden;
+}
+
+#menu-toggle{
+    display: none;
+}
+
+.spring-item{
+    border-bottom: white solid .1em;
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: .3em;
+    padding-left: 5px;
+    font-weight: bold;
+    height: 3em;
+}
+
+/* Style for responsive */
+.info-box{
+    width: 150px;
+    height: 200px;
+    margin: 1em 2em;
+    background: white;
+}
+
+.box-data{
+    height: 70%;
+    text-align: center;
+    font-size: 200%;
+    font-weight: bold;
+    line-height: 370%;
+}
+
+.box-title{
+    height: 30%;
+    background: rgb(44, 10, 10);
+    font-weight: bold;
+    font-size: 120%;
+    text-align: center;
+    color: white;
+    line-height: 250%;
+}
+
+/* Style menu navigation */
+#logo{
+    padding-left: 5px;
+    font-size: 150%;
+    margin-right: 10px;
+}
+
+.menu-icon{
+    float: right;
+    margin-left: 50px;
+}
+
+.menu-item{
+    margin: 1em 0;
+    margin-left: 1em;
+    margin-right: 3em;
+    font-size: 120%;
+    color: white;
+    text-decoration: none;
+}
+
+/* Style content pane */
+#reds-create{
+    color: white;
+    display: inline-block;
+    margin-right: 5px;
+    background: rgb(109, 162, 243);
+    height: 100%;
+    cursor: pointer;
+}
+
+#int-create{
+    color: white;
+    display: inline-block;
+    margin-right: 5px;
+    background: rgb(109, 162, 243);
+    height: 100%;
+    line-height: 200%;
+    cursor: pointer;
+}
+
+#reds-create a, #int-create a{
+    text-decoration: none;
+    color: white;
+}
+
+.pellet, .pellet-data{
+    display: none;
+}
+
+p a{
+    text-decoration: none;
+    color: white;
+}
+
+@media screen and (max-width: 650px){
+    #menu{
+        display: none;
+    }
+
+    #reds-create{
+        display:none;
+    }
+
+    #int-create{
+        display: none;
+    }
+
+    #user{
+        /* float: left; */
+        text-align: left;
+        padding-left: 5px;
+    }
+
+    #welcome-user{
+        display: none;
+    }
+
+    #menu-toggle{
+        float: right;
+        display: inline;
+    }
+
+    .info-box{
+        display: none;
+    }
+
+    .cover{
+        background: green;
+        height: 50px;
+        width: 98%;
+        display: flex;
+        flex-flow: row nowrap;
+        margin: .5em 5px;
+        border: black .1em solid;
+    }
+
+    .pellet{
+        width: 10%;
+        background: #107896;
+        width: 88%;
+        height: 100%;
+        line-height: 300%;
+        color: white;
+        padding-left: 10px;
+        display: block;
+        font-weight: bold;
+    }
+
+    .pellet-data{
+        width: 12%;
+        background: gray;
+        height: 100%;
+        font-weight: bold;
+        line-height: 300%;
+        padding-left: 5px;
+        display: block;
+        color: white;
+    }
+
+    #content{
+        display: flex;
+        flex-flow: column wrap;
+        align-content: center;
+        background: white;
+    }
+}

@@ -1,0 +1,157 @@
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: white;
+    position: relative;
+}
+
+main{
+    min-height: 550px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+#menu{
+    background: black;
+    color: white;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-right: .4em;
+    white-space: nowrap;
+}
+
+#content{
+    background: grey;
+    flex-grow: 2;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+#user{
+    background: #c4d0f8;
+    height: 30px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+#sign-out{
+    height: 20px;
+    margin-top: 2px;
+}
+
+#spring-menu{
+    display: none;
+    position: absolute;
+    margin-top: 3px;
+    width: 70%;
+    height: 70%;
+    background: rgb(39, 38, 38);
+    text-align: left;
+    overflow: hidden;
+}
+
+#menu-toggle{
+    display: none;
+}
+
+.spring-item{
+    border-bottom: white solid .1em;
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: .3em;
+    padding-left: 5px;
+    font-weight: bold;
+    height: 3em;
+}
+
+#user-id{
+    display: inline;
+    cursor: pointer;
+}
+
+/* Style menu navigation */
+#logo{
+    padding-left: 5px;
+    font-size: 150%;
+    margin-right: 10px;
+}
+
+#menu ul{
+    padding: 0;
+    list-style-type: none;
+}
+
+.menu-icon{
+    float: right;
+    margin-left: 50px;
+}
+
+.menu-item{
+    margin: 1em 0;
+    margin-left: 1em;
+    margin-right: 3em;
+    font-size: 120%;
+    color: white;
+    text-decoration: none;
+}
+
+.case{
+    display: flex;
+    flex-flow: column nowrap;
+    height: 33%;
+    background: white;
+    width: 90%;
+    margin: 1em 2em;
+    justify-content: flex-end;
+}
+
+.options{
+    background: cornflowerblue;
+    height: 20%; 
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    line-height: 200%;
+    margin-bottom: 2px;
+}
+
+.action{
+    cursor: pointer;
+}
+
+.action:hover{
+    color: red;
+}
+
+
+/* Style content pane */
+.box{
+    width: 150px;
+    height: 200px;
+    margin: 1em 2em;
+    background: white;
+}
+
+@media screen and (max-width: 650px){
+    #menu{
+        display: none;
+    }
+
+    #user{
+        text-align: left;
+        padding-left: 5px;
+    }
+
+    #menu-toggle{
+        float: right;
+        display: inline;
+    }
+
+    #content{
+        justify-content: space-around;
+    }
+}
+
+

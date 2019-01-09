@@ -1,0 +1,46 @@
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#four04{
+    background: red;
+    color: white;
+    text-align: center;
+    min-height: 200px;
+    line-height: 500%;
+    font-weight: bold;
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 3px;
+}
+
+#foot{
+    font-size: 200%;
+    background: black;
+    color: white;
+    width: 10%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    margin: 2em auto;
+}
+
+#err_msg{
+    background: gray;
+    color: white;
+    align-content: center;
+    min-height: 40%;
+    width: 40%;
+    margin: 0 auto;
+    padding: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 50%;
+}
+
+#err-code{
+    font-size: 200%;
+}
+
+#msg{
+    font-size: 150%;
+}

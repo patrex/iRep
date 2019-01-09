@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="./js/feather.js"></script>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>welcome | user</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="./css/profile.css" />
+    </head>
+    <body onload="loadData()">
+            <div id="user">
+                <div id="welcome-user"></div>
+                <div id="reds-create"><i data-feather="plus-circle" class="add-icon"></i><a href="/makered">Add Redflag</a></div> 
+                <div id="int-create"><i data-feather="plus-circle" class="add-icon"></i><a href="/makeint">Add Int.</a></div> 
+
+
+                <i data-feather="user" id="sign-out"></i>
+                <p id="user-id"> <a href="/api/v1/auth/logout">Log out</a></p> 
+
+                <i data-feather="menu" id="menu-toggle"></i>
+            </div>
+            
+            <div id="spring-menu">
+                <a href="/redflags" class="spring-item">Red-Flag Cases </a>
+                <a href="/interventions" class="spring-item">Intervention Cases</a>
+                <a href="/makered" class="spring-item">Create Redflag Record</a>
+                <a href="/makeint" class="spring-item">Create Intervention Record</a>
+            </div>
+            <br>
+        <main>
+            <div id="menu">
+                <p id="logo">iReporter</p>
+                <a href="/redflags" class="menu-item">Red-Flag Cases </a>
+                <a href="/interventions" class="menu-item">Intervention Cases</a>
+            </div>
+
+
+            <div id="content">
+                
+            </div>
+            
+        </main> 
+        <script src="./js/profile.js"></script>
+    </body>
+</html>

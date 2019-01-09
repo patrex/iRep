@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>welcome | user</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/admin.css" />
+</head>
+<body>
+    <div id="user">
+        <i data-feather="user" id="sign-out"></i>
+        <p id="user-id"><a href="/api/v1/auth/logout">Log out</a></p> 
+
+        <i data-feather="menu" id="menu-toggle"></i>
+    </div>
+    <div id="spring-menu">
+        <a href="#" class="spring-item">Get all Users</a>
+        <a href="#" class="spring-item">Get All Redflag Cases</a>
+        <a href="#" class="spring-item">Get all Intervention Cases</a>
+        <a href="#" class="spring-item">Get All Resolved Cases</a>
+        <a href="#" class="spring-item">Get All Rejected Cases</a>
+        <a href="#" class="spring-item">Get All Draft Cases</a>
+    </div>
+    <br>
+    <main>
+        <div id="menu">
+            <p id="logo">iReporter</p>
+            <a href="#" class="menu-item">Get all Users</a>
+            <a href="#" class="menu-item">Get All Redflag Cases</a>
+            <a href="#" class="menu-item">Get all Intervention Cases</a>
+            <a href="#" class="menu-item">Get All Resolved Cases</a>
+            <a href="#" class="menu-item">Get All Rejected Cases</a>
+            <a href="#" class="menu-item">Get All Draft Cases</a>
+            <i id="lastlogin">Last login: </i>
+        </div>
+
+
+        <div id="content">
+            <h3>Database status: </h3>
+            <h3>Total Registered Users: </h3>
+            <h3>Anonymous Tippers: </h3>
+            <hr>
+            <h2>Total Cases: </h2>
+            <h2>Total Resolved: </h2>
+            <h2>Total Rejected: </h2>
+            <h2>Total Under-investigation: </h2>
+            <hr>
+        </div>
+        
+    </main> 
+    <script src="./js/feather.js"></script>
+    <script src="./js/admin.js"></script>
+</body>
+</html>
