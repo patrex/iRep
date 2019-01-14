@@ -4,8 +4,8 @@ import router from './routes/router';
 import session from 'express-session'
 import bc from 'bcryptjs';
 
-const app = express();
 
+const app = express();
 const salt = bc.genSaltSync();
 
 app.use(session({

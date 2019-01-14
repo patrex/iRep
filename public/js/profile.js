@@ -78,48 +78,48 @@ function loadData(){
 
                 <div class="cover">
                     <div class="info-box">
-                        <div class="box-data">${payload.countResInt}</div>
+                        <div class="box-data">0</div>
                         <div class="box-title">Ints Resolved</div>
                     </div>
                     <div class="pellet">Interventions Resolved</div>
-                    <div class="pellet-data">${payload.countResInt}</div>
+                    <div class="pellet-data">0</div>
                 </div>
 
                 <div class="cover">
                     <div class="info-box">
-                        <div class="box-data">${payload.countRejRed}</div>
+                        <div class="box-data">0</div>
                         <div class="box-title">Reds Rejected</div>
                     </div>
 
                     <div class="pellet">Redflags Rejected</div>
-                    <div class="pellet-data">${payload.countRejRed}</div>
+                    <div class="pellet-data">0</div>
                 </div>
             
                 <div class="cover">
                     <div class="info-box">
-                        <div class="box-data">${payload.countRejInt}</div>
+                        <div class="box-data">0</div>
                         <div class="box-title">Ints Rejected</div>
                     </div> 
                     <div class="pellet">Interventions Rejected</div>
-                    <div class="pellet-data">${payload.countRejInt}</div>
+                    <div class="pellet-data">0</div>
                 </div> 
 
                 <div class="cover">
                     <div class="info-box">
-                        <div class="box-data">${payload.countDraftRed}</div>
+                        <div class="box-data">0</div>
                         <div class="box-title">Reds Draft</div>
                     </div> 
                     <div class="pellet">Redflags In Draft</div>
-                    <div class="pellet-data">${payload.countDraftRed}</div>
+                    <div class="pellet-data">0</div>
                 </div>
 
                 <div class="cover">
                     <div class="info-box">
-                        <div class="box-data">${payload.countDraftInt}</div>
+                        <div class="box-data">0</div>
                         <div class="box-title">Ints Draft</div>
                     </div>
                     <div class="pellet">Interventions in Draft</div>
-                    <div class="pellet-data">${payload.countDraftInt}</div>
+                    <div class="pellet-data">0</div>
                 </div> 
 
                 `

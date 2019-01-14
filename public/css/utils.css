@@ -31,6 +31,8 @@
     white-space: normal;
     word-break: break-all;
     word-wrap: break-word;
+    overflow-y: auto;
+    overflow-x: auto;
     /* white-space: pre-wrap; */
 
 }
@@ -46,6 +48,7 @@
 
 #alert-footer{
     text-align: center;
+    white-space: nowrap;
 }
 
 #alert-close{

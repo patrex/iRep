@@ -3,7 +3,10 @@ import bc from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import qs from 'querystring';
 
+let active = 0;
+
 class User{
+    
     async createUser(request, response){
         const pwd = request.body.psw;
         var firstname1 = request.body.fname;
@@ -46,7 +49,6 @@ class User{
     }
 
     async logUserIn(request, response){
-        let active = 0;
         const usr = request.body.username;
         const pwd = request.body.pwd;
 
@@ -67,12 +69,12 @@ class User{
                         request.session.token = token;
                         active += 1;
                         console.log('Active users: ' + active);
-                        console.log(request.session.usr);
 
                         const username = qs.stringify({
-                            user: user.usr
+                            user: request.session.user
                         });
 
+                        console.log(request.session.user)
                         
                         response.redirect('/profile?' + username);
                     }else{
