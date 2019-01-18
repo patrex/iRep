@@ -52,7 +52,7 @@ function loadData(){
     }
 }
 
-// const trash = document.getElementById('delete');
+// const trash = document.getElementById('del');
 // trash.onclick = (id) => {
 //     const xhr = new XMLHttpRequest();
 //     xhr.open('DELETE', `/api/v1/red-flags/${id}`, true);
