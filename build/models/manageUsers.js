@@ -19,15 +19,16 @@ var Users = function () {
     key: 'addUser',
     value: async function addUser(usr) {
       var flag = false;
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       try {
         client.connect();
-        var query = 'INSERT INTO users(firstname, lastname, othernames, email, phone, registered, is_admin, password, username) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)';
+        var query = 'INSERT INTO users(firstname, lastname, othernames, email, phone, registered, isadmin, password, username) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)';
         var values = ['' + usr.firstname, '' + usr.lastname, '' + usr.othernames, '' + usr.email, '' + usr.phone, 'now', '' + usr.isAdmin, '' + usr.pwd, '' + usr.usrname];
         var Result = await client.query(query, values);
         client.end();
@@ -40,10 +41,11 @@ var Users = function () {
     key: 'fetchData',
     value: async function fetchData(login) {
       var Result = void 0;
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = 'SELECT * FROM users WHERE username=$1';

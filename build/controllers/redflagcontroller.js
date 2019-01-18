@@ -27,7 +27,7 @@ var RedFlagController = function () {
 
 			var post = {
 				createdBy: creator.usr,
-				status: "under-investigation",
+				status: "draft",
 				location: "0,0",
 				comment: req.body.desc
 			};

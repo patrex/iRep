@@ -123,6 +123,8 @@ function loadData(){
                 </div> 
 
                 `
+
+            content.insertAdjacentHTML("afterbegin", html);
         }else{
             payload = JSON.parse(xhr.responseText);
             const html = `

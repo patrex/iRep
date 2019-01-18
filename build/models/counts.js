@@ -3,10 +3,11 @@
 var _pg = require("pg");
 
 async function counters(req, res) {
-    var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+    var connectionString = process.env.DATABASE_URL;
 
     var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
     });
 
     var redAll = "SELECT COUNT(*) FROM redflags";
@@ -18,8 +19,8 @@ async function counters(req, res) {
     var redRej = "SELECT COUNT(*) FROM redflags WHERE current_status='rejected'";
     var intRej = "SELECT COUNT(*) FROM interventions WHERE current_status='rejected'";
 
-    var redDraft = "SELECT COUNT(*) FROM redflags WHERE current_status='under-investigation'";
-    var intDraft = "SELECT COUNT(*) FROM interventions WHERE current_status='under-investigation'";
+    var redDraft = "SELECT COUNT(*) FROM redflags WHERE current_status='draft'";
+    var intDraft = "SELECT COUNT(*) FROM interventions WHERE current_status='draft'";
 
     var total_reds = void 0,
         total_ints = void 0,

@@ -24,8 +24,9 @@ main{
 #content{
     background: grey;
     flex-grow: 2;
-    display: flex;
-    flex-flow: row nowrap;
+    overflow-y: auto;
+    /* display: flex;
+    flex-flow: row nowrap; */
 }
 
 #user{
@@ -72,12 +73,12 @@ main{
 
 .case{
     display: flex;
-    flex-flow: column nowrap;
-    height: 33%;
+    flex-flow: column;
+    height: 21%;
     background: white;
     width: 90%;
     margin: 1em 2em;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .options{
@@ -86,11 +87,13 @@ main{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
-    line-height: 200%;
+    padding-top: 5px;
 }
 
 .action{
     cursor: pointer;
+    width: 30px;
+    color: #000;
 }
 
 .action:hover{

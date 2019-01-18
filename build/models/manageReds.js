@@ -21,10 +21,11 @@ var RedFlags = function () {
   _createClass(RedFlags, [{
     key: "returnAll",
     value: async function returnAll(username) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = "SELECT * FROM redflags";
@@ -57,10 +58,11 @@ var RedFlags = function () {
   }, {
     key: "create",
     value: async function create(red) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var Result = void 0;
@@ -82,10 +84,11 @@ var RedFlags = function () {
   }, {
     key: "delete",
     value: async function _delete(id) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = "DELETE FROM redflags WHERE id=$1";
@@ -102,10 +105,11 @@ var RedFlags = function () {
   }, {
     key: "changeStatus",
     value: async function changeStatus(red) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = "UPDATE redflags SET status=$1 WHERE id=$2";
@@ -124,10 +128,11 @@ var RedFlags = function () {
   }, {
     key: "comment",
     value: async function comment(red) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var sql = "UPDATE redflags SET comment=$1 WHERE id=$2";
@@ -146,10 +151,11 @@ var RedFlags = function () {
   }, {
     key: "location",
     value: async function location(red) {
-      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
+      var connectionString = process.env.DATABASE_URL;
 
       var client = new _pg.Client({
-        connectionString: connectionString
+        connectionString: connectionString,
+        ssl: true,
       });
 
       var _int$location$split = int.location.split(','),

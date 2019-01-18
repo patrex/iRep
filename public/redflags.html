@@ -6,11 +6,15 @@
     <title>welcome | user</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/redflags.css" />
+
+    <link rel="stylesheet" href="./css/css/all.css">
+
+    <script src="./js/feather.js"></script>
 </head>
-<body>
+<body onload="loadData()">
         <div id="user">
             <i data-feather="user" id="sign-out"></i>
-            <p id="user-id">{user name}</p> 
+            <p id="user-id">Log out</p> 
             
             <i data-feather="menu" id="menu-toggle"></i>
         </div>
@@ -30,21 +34,11 @@
         </div>
 
         <div id="content">
-            <div class="case">
-                <p>Created by:</p>
-                <p>Status:</p>
-                <p>Comment:</p>
-                <div class="options">
-                    <i data-feather="image" class="action" id="add-image"></i>
-                    <i data-feather="map-pin" class="action" id="add-loc"></i>
-                    <i data-feather="trash-2" class="action" id="trash"></i>
-                    <i data-feather="edit-2" class="action" id="edit"></i>
-                </div>
-            </div>   
+            
         </div>
         
     </main> 
-    <script src="./js/feather.js"></script>
+    
     <script src="./js/redflags.js"></script>
 </body>
 </html>
