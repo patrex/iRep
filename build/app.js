@@ -23,7 +23,6 @@ var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-
 var salt = _bcryptjs2.default.genSaltSync();
 
 app.use((0, _expressSession2.default)({
@@ -32,7 +31,7 @@ app.use((0, _expressSession2.default)({
     saveUninitialized: true
 }));
 
-app.use(_express2.default.static(_path2.default.join(__dirname, '../public/')));
+app.use(_express2.default.static(_path2.default.join(__dirname, '../public')));
 
 app.use(_express2.default.json());
 app.use(_express2.default.urlencoded({ extended: false }));

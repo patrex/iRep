@@ -21,11 +21,10 @@ var Incidents = function () {
   _createClass(Incidents, [{
     key: "returnAll",
     value: async function returnAll() {
-      var connectionString = process.env.DATABASE_URL;
+      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
       var client = new _pg.Client({
-        connectionString: connectionString,
-        ssl: true,
+        connectionString: connectionString
       });
 
       var sql = "SELECT * FROM interventions";
@@ -43,11 +42,10 @@ var Incidents = function () {
   }, {
     key: "getOne",
     value: async function getOne(id) {
-      var connectionString = process.env.DATABASE_URL;
+      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
       var client = new _pg.Client({
-        connectionString: connectionString,
-        ssl: true,
+        connectionString: connectionString
       });
 
       var sql = "SELECT * FROM interventions WHERE id=$1";
@@ -66,11 +64,10 @@ var Incidents = function () {
   }, {
     key: "create",
     value: async function create(int) {
-      var connectionString = process.env.DATABASE_URL;
+      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
       var client = new _pg.Client({
-        connectionString: connectionString,
-        ssl: true,
+        connectionString: connectionString
       });
 
       var sql = "INSERT INTO interventions(created_by, creadted_on, current_status, location, comment) VALUES($1, $2, $3, $4, $5)";
@@ -87,11 +84,10 @@ var Incidents = function () {
   }, {
     key: "delete",
     value: async function _delete(id) {
-      var connectionString = process.env.DATABASE_URL;
+      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
       var client = new _pg.Client({
-        connectionString: connectionString,
-        ssl: true,
+        connectionString: connectionString
       });
 
       var sql = "DELETE FROM interventions WHERE id=$1";
@@ -108,11 +104,10 @@ var Incidents = function () {
   }, {
     key: "changeStatus",
     value: async function changeStatus(int) {
-      var connectionString = process.env.DATABASE_URL;
+      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
       var client = new _pg.Client({
-        connectionString: connectionString,
-        ssl: true,
+        connectionString: connectionString
       });
 
       var Result = void 0;
@@ -133,11 +128,10 @@ var Incidents = function () {
   }, {
     key: "comment",
     value: async function comment(int) {
-      var connectionString = process.env.DATABASE_URL;
+      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
       var client = new _pg.Client({
-        connectionString: connectionString,
-        ssl: true,
+        connectionString: connectionString
       });
 
       var Result = void 0;
@@ -158,11 +152,10 @@ var Incidents = function () {
   }, {
     key: "location",
     value: async function location(int) {
-      var connectionString = process.env.DATABASE_URL;
+      var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
       var client = new _pg.Client({
-        connectionString: connectionString,
-        ssl: true,
+        connectionString: connectionString
       });
 
       var _int$location$split = int.location.split(','),

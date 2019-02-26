@@ -27,7 +27,7 @@ var RedFlagController = function () {
 
 			var post = {
 				createdBy: creator.usr,
-				status: "draft",
+				status: "under-investigation",
 				location: "0,0",
 				comment: req.body.desc
 			};
@@ -131,7 +131,7 @@ var RedFlagController = function () {
 			if (Result.rowCount > 0) {
 				res.json({
 					status: 201,
-					message: 'red-flag incident with id [' + id + '] was successfully deleted'
+					message: 'red-flag incident with id [' + id + '] has been deleted'
 				});
 			} else {
 				res.json({

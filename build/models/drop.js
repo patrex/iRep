@@ -2,11 +2,10 @@
 
 var _pg = require('pg');
 
-var connectionString = process.env.DATABASE_URL;
+var connectionString = "postgres://ireporter:hallmark@localhost:5432/ireporter";
 
 var client = new _pg.Client({
-    connectionString: connectionString,
-    ssl: true,
+    connectionString: connectionString
 });
 
 var sql = 'drop table images, interventions, redflags, users; drop type status';

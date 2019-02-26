@@ -1,5 +1,4 @@
 'use strict';
-var active = 0;
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -26,6 +25,8 @@ var _querystring2 = _interopRequireDefault(_querystring);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var active = 0;
 
 var User = function () {
     function User() {
@@ -60,7 +61,6 @@ var User = function () {
             Result = await _manageUsers2.default.addUser(user);
 
             if (Result.rowCount > 0) {
-
                 var string = _querystring2.default.stringify({
                     status: 0,
                     msg: 'Account creation successful'
@@ -92,16 +92,17 @@ var User = function () {
                             isAdmin: Result[0].is_admin
                         };
                         var token = _jsonwebtoken2.default.sign(user, 'secret');
-                        request.session.user = JSON.stringify(user);
                         request.session.token = token;
-                        ++active;
-                        console.log('Active users: ' + active);
+                        active += 1; //count active users
+                        //console.log('Active users: ' + active);
 
-                        var username = _querystring2.default.stringify({
-                            user: user.usr
-                        });
+                        // const username = qs.stringify({
+                        //     user: request.session.token.usr
+                        // });
 
-                        response.redirect('/profile?' + username);
+                        console.log(request.session.token);
+
+                        response.redirect('/profile?' + user.usr);
                     } else {
                         var string = _querystring2.default.stringify({
                             status: 1,
