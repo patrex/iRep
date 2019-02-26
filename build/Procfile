@@ -1,1 +1,1 @@
-web: "node ./build/app"
+web: "node ./build/server"
