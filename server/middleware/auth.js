@@ -37,10 +37,10 @@ function checkLogin(request, response, next){
 }
 
 function isLoggedIn(request, response, next){
-    if(!request.session.user){
+    if(!request.session.token){
         const string = qs.stringify({
             status: 1,
-            msg: 'You are not logged in.'
+            msg: 'You are not logged in. qq'
         })
         response.redirect('/?' + string);
     }else{
@@ -73,7 +73,7 @@ function verifyToken(request, response, next){
 }
 
 function logout(request, response, next){
-    if(request.session.user){
+    if(request.session.token){
         if(request.session.token){
             request.session.destroy();
             response.redirect('/');

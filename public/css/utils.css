@@ -1,30 +1,30 @@
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 #alert-box{
   width: 40%;
   height: 20%;
-  margin: auto;
+  margin: auto auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
   white-space: nowrap;
   border-top: 0.1em solid whitesmoke;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.7);
+  
 }
 
 #alert-header{
     color: white;
-    height: 15%;
+    height: 16%;
     text-align: center;
     background: red;
     font-size: 120%;
     box-shadow: 0 3px 7px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
-#alert-header-icon{
-    padding-top: 1%;
-    height: 20px;
-}
-
 #alert-body{
-    background: rgb(240, 201, 201);
+    background: rgb(247, 233, 233);
     height: 70%;
     text-align: center;
     width: 100%;
@@ -39,16 +39,14 @@
 
 #alert-footer{
     height: 15%;
+    text-align: center;
+    white-space: nowrap;
+    background: rgb(247, 233, 233);
 }
 
 #msg{
     display: inline;
     margin: 1em .5em;
-}
-
-#alert-footer{
-    text-align: center;
-    white-space: nowrap;
 }
 
 #alert-close{
@@ -63,4 +61,73 @@
 #alert-close:hover{
     background: white;
     color: red;
+}
+
+/* Confirmation dialog */
+
+#confirm-box{
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0, 0.75);
+}
+
+#conf-content{
+    width: 40%;
+    height: 30%;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.btn{
+    border-radius: 10px;
+    background: lightblue;
+    width: 10vw;
+    height: 5vh;
+    cursor: pointer;
+    margin: 10px 20px;
+}
+
+#conf:hover{
+    background: red;
+    color: white;
+    font-family: cursive;
+}
+
+#decl:hover{
+    background: rgb(118, 180, 118);
+    color: white;
+    font-family: cursive;
+}
+
+#confirm-close:hover{
+    background: white;
+    color: red;
+}
+
+@media screen and (max-width: 650px){
+    #confirm-box{
+        height: 100vh;    
+    }
+
+    #conf-content{
+        width: 90%;
+        height: 50%;
+        position: absolute;
+        background-color: white;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    .btn{
+        width: 70%;
+        height: 10vh;
+        margin: 5% auto;
+        display: block;
+    }
 }

@@ -6,23 +6,37 @@
     <title>welcome | user</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/redflags.css" />
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="./css/css/all.css"> 
+    <!-- Interactions -->
+    <link rel="stylesheet" href="./css/utils.css">
 
-    <link rel="stylesheet" href="./css/css/all.css">
-
-    <script src="./js/feather.js"></script>
+    
 </head>
 <body onload="loadData()">
-        <div id="user">
-            <i data-feather="user" id="sign-out"></i>
-            <p id="user-id">Log out</p> 
-            
-            <i data-feather="menu" id="menu-toggle"></i>
-        </div>
 
-        <div id="spring-menu">
-            <a href="#" class="spring-item">Red-Flag Cases </a>
-            <a href="#" class="spring-item">Intervention Cases</a>
+    <div id="confirm-box">
+        <div id="conf-content">
+            <p>
+                Delete this post? This is irreversible.
+            </p>
+            <button id="conf" class="btn">YES</button>
+            <button id="decl" class="btn">NO</button>
+            <br>
         </div>
+    </div>
+
+    <div id="user">
+        <i data-feather="user" id="sign-out"></i>
+        <p id="user-id"><a href="/api/v1/auth/logout">Log out</p> 
+        
+        <i data-feather="menu" id="menu-toggle"></i>
+    </div>
+
+    <div id="spring-menu">
+        <a href="#" class="spring-item">Red-Flag Cases</a>
+        <a href="#" class="spring-item">Intervention Cases</a>
+    </div>
 
 
         <br>
@@ -36,9 +50,11 @@
         <div id="content">
             
         </div>
+
+        
         
     </main> 
-    
+    <script src="./js/feather.js"></script>
     <script src="./js/redflags.js"></script>
 </body>
 </html>

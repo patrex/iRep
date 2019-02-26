@@ -21,9 +21,7 @@ class RedFlagController {
 				msg: 'Redflag incident creation successful'
 			});
 			res.redirect('/redflags?' + string);
-		}
-			
-		else{
+		}else{
 			const string = qs.stringify({
 				status: 1,
 				msg: 'Redflag creation failed'
@@ -108,7 +106,7 @@ class RedFlagController {
 		if(Result.rowCount > 0){
 			res.json({
 				status: 201,
-				message: `red-flag incident with id [${id}] was successfully deleted`
+				message: `red-flag incident with id [${id}] has been deleted`
 			});
 		}
 			

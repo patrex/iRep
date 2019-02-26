@@ -25,11 +25,25 @@ function loadData(){
     xhr.send();
 
     xhr.onload = () => {
-        if(xhr.status !== 200)
-            console.log('Operation failed')
+        if(xhr.status !== 200){
+            showAlert('Could not fetch data.<br>Reload the page or try again later');
+
+            const alertClose = document.getElementById('alert-close');
+            const alertBox = document.getElementById('alert-box');
+        
+            alertClose.onclick = () => {
+                alertBox.style.display = 'none';
+            }
+
+            handlebars.insertAdjacentHTML('afterbegin',
+                ` <i class="fas fa-fill-drip" id="drip"></i> `
+            )
+        }
+           
         else {
             let result = JSON.parse(xhr.response);
             const res_arr = result.Result;
+            
             
             for(let i = 0; i < res_arr.length; i++){
                 let html = `
@@ -38,23 +52,59 @@ function loadData(){
                         Status: ${res_arr[i].current_status}<br><br>
                         Comment: ${res_arr[i].comment}<br>
                         <div class="options">
-                            <i class="far fa-file-image action" id="add-image"></i>
-                            <i class="fas fa-map-pin action" id="add-loc"></i>
-                            <i class="far fa-trash-alt action" id="del"></i>
-                            <i class="fas fa-pencil-alt action" id="mod"></i>
+                            <i class="far fa-file-image action" id="add-image${res_arr[i].id}" onclick="warnCritical(addImage, this)"></i>
+                            <i class="fas fa-map-pin action" id="add-loc${res_arr[i].id}" onclick="addLocation()"></i>
+                            <i class="far fa-trash-alt action" id="del${res_arr[i].id}" onclick="warnCritical(deletePost, this)"></i>
+                            <i class="fas fa-pencil-alt action" id="mod${res_arr[i].id}" onclick="edit()"></i>
                         </div>
                     </div>
                 `
-
+                
                 handlebars.insertAdjacentHTML('beforeend', html);
             }
         }
     }
 }
 
-// const trash = document.getElementById('del');
-// trash.onclick = (id) => {
-//     const xhr = new XMLHttpRequest();
-//     xhr.open('DELETE', `/api/v1/red-flags/${id}`, true);
-//     xhr.send();
-// }
+function showAlert(msg){
+    const alert = `
+        <div id="alert-box">
+            <div id="alert-header">
+                Critical Error
+                <span id="alert-close">&times;</span>
+            </div> 
+            <div id="alert-body"> <p id="msg">${msg}</p></div>
+            <div id="alert-footer">ireporter</div>
+        </div>
+    `
+    handlebars.insertAdjacentHTML('beforeend', alert);
+}
+
+function warnCritical(functionid, data){
+    const conf = document.getElementById('conf');
+    const box = document.getElementById('confirm-box');
+
+    box.style.display = 'flex';
+
+    conf.onclick = () => {
+        box.style.display = 'none';
+        functionid(data);   
+    }
+
+    decl.onclick = () => box.style.display = 'none';
+}
+
+function deletePost(elt){
+    const id = elt.parentElement.parentElement.dataset.id;
+    const xhr = new XMLHttpRequest();
+    xhr.open('DELETE', `/api/v1/red-flags/${id}`, true);
+    xhr.send();
+    
+    //resend fertch request to update items
+    elt.parentElement.parentElement.remove();
+}
+
+function addImage(data){
+    alert(data);
+}
+

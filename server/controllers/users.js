@@ -33,7 +33,6 @@ class User{
         Result = await users.addUser(user);
 
         if(Result.rowCount > 0){
-            
             const string = qs.stringify({
                 status: 0,
                 msg: 'Account creation successful'
@@ -62,21 +61,20 @@ class User{
                     if(res == true){
                         const user = {
                             usr: Result[0].username,
-                            isAdmin: Result[0].is_admin
+                            isAdmin: Result[0].is_admin,
                         }
                         let token = jwt.sign(user, 'secret');
-                        request.session.user = JSON.stringify(user);
                         request.session.token = token;
-                        active += 1;
-                        console.log('Active users: ' + active);
+                        active += 1;    //count active users
+                        //console.log('Active users: ' + active);
 
-                        const username = qs.stringify({
-                            user: request.session.user
-                        });
+                        // const username = qs.stringify({
+                        //     user: request.session.token.usr
+                        // });
 
-                        console.log(request.session.user)
+                        console.log(request.session.token)
                         
-                        response.redirect('/profile?' + username);
+                        response.redirect('/profile?' + user.usr);
                     }else{
                         const string = qs.stringify({
                             status: 1,

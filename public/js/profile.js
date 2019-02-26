@@ -205,9 +205,7 @@ function loadData(){
 
                 `
 
-                
+                content.insertAdjacentHTML("afterbegin", html);      
         }
-    }
-    content.insertAdjacentHTML("afterbegin", html);
+    } 
 }
-
