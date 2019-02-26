@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _app = require('../server/app');
+var _app = require('./app');
 
 var _app2 = _interopRequireDefault(_app);
 
