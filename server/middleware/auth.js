@@ -30,7 +30,7 @@ function checkLogin(request, response, next){
         const string = qs.stringify({
             status: 1,
             msg: 'Invalid password'
-        })
+        });
         response.redirect(`/?${string}`);
     }
     else next();
@@ -40,12 +40,10 @@ function isLoggedIn(request, response, next){
     if(!request.session.token){
         const string = qs.stringify({
             status: 1,
-            msg: 'You are not logged in. qq'
-        })
+            msg: 'You are not logged in.'
+        });
         response.redirect(`/?${string}`);
-    }else{
-        next();
-    }
+    }else next();
 }
 
 function verifyAdmin(request, response, next){
@@ -68,7 +66,7 @@ function verifyToken(request, response, next){
                 msg: 'We could not verify you'
             })
             response.redirect(`/?${string}`);
-        }else next();
+        } else next();
     });
 }
 
