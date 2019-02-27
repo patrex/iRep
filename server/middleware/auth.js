@@ -31,7 +31,7 @@ function checkLogin(request, response, next){
             status: 1,
             msg: 'Invalid password'
         })
-        response.redirect('/?' + string);
+        response.redirect(`/?${string}`);
     }
     else next();
 }
@@ -42,7 +42,7 @@ function isLoggedIn(request, response, next){
             status: 1,
             msg: 'You are not logged in. qq'
         })
-        response.redirect('/?' + string);
+        response.redirect(`/?${string}`);
     }else{
         next();
     }
@@ -67,7 +67,7 @@ function verifyToken(request, response, next){
                 status: 1,
                 msg: 'We could not verify you'
             })
-            response.redirect('/?' + string);
+            response.redirect(`/?${string}`);
         }else next();
     });
 }
