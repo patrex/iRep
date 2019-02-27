@@ -6,7 +6,6 @@ import qs from 'querystring';
 let active = 0;
 
 class User{
-    
     async createUser(request, response){
         const pwd = request.body.psw;
         var firstname1 = request.body.fname;
@@ -37,13 +36,13 @@ class User{
                 status: 0,
                 msg: 'Account creation successful'
             });
-            response.redirect('/?' + string);
+            response.redirect(`/?${string}`);
         }else{
             const string = qs.stringify({
                 status: 1,
                 msg: 'Your account could not be created'
             });
-            response.redirect('/?' + string);
+            response.redirect(`/?${string}`);
         }
     }
 
@@ -66,21 +65,16 @@ class User{
                         let token = jwt.sign(user, 'secret');
                         request.session.token = token;
                         active += 1;    //count active users
-                        //console.log('Active users: ' + active);
 
-                        // const username = qs.stringify({
-                        //     user: request.session.token.usr
-                        // });
-
-                        console.log(request.session.token)
+                        //console.log(request.session.token)
                         
-                        response.redirect('/profile?' + user.usr);
+                        response.redirect(`/profile?${user.usr}`);
                     }else{
                         const string = qs.stringify({
                             status: 1,
                             msg: 'Authentication failed'
                         })
-                        response.redirect('/?' + string);
+                        response.redirect(`/?${string}`);
                     }
                 });
         }catch(err){
@@ -88,7 +82,7 @@ class User{
                 status: 1,
                 msg: 'Authentication failed'
             })
-            response.redirect('/?' + string);
+            response.redirect(`/?${string}`);
         }      
     }
 }
