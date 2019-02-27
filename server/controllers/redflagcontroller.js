@@ -1,13 +1,17 @@
 import reddb from '../models/manageReds';
 import qs from 'querystring';
+import jwt from 'jsonwebtoken';
 
 class RedFlagController {
 	async createRedFlag (req, res) {
 		let Result;
-		let creator = JSON.parse(req.session.user);
-	
+		//let creator = JSON.parse(req.session.token);
+		let token = JSON.parse(req.session.token);
+		token = jwt.verify(token, 'secret');
+		let creator = token.usr;
+
 		const post = {
-			createdBy: creator.usr,
+			createdBy: creator,
 			status: "under-investigation",
 			location: "0,0",
 			comment: req.body.desc

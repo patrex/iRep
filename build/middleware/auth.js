@@ -52,6 +52,7 @@ function checkLogin(request, response, next) {
 }
 
 function isLoggedIn(request, response, next) {
+    //console.log(request);
     if (!request.session.token) {
         var string = _querystring2.default.stringify({
             status: 1,
@@ -72,7 +73,7 @@ function verifyAdmin(request, response, next) {
 }
 
 function verifyToken(request, response, next) {
-    var token = request.session.token;
+    var token = JSON.parse(request.session.token);
     _jsonwebtoken2.default.verify(token, 'secret', function (err, res) {
         if (err) {
             var string = _querystring2.default.stringify({

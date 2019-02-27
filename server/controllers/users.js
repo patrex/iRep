@@ -63,11 +63,10 @@ class User{
                             isAdmin: Result[0].is_admin,
                         }
                         let token = jwt.sign(user, 'secret');
-                        // request.session.token = token;
+                        request.session.token = JSON.stringify(token);
                         active += 1;    //count active users
 
                         //console.log(request.session.token)
-                        
                         response.redirect(`/profile?${user.usr}`);
                     }else{
                         const string = qs.stringify({

@@ -10,6 +10,10 @@ var _querystring = require('querystring');
 
 var _querystring2 = _interopRequireDefault(_querystring);
 
+var _jsonwebtoken = require('jsonwebtoken');
+
+var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23,10 +27,13 @@ var RedFlagController = function () {
 		key: 'createRedFlag',
 		value: async function createRedFlag(req, res) {
 			var Result = void 0;
-			var creator = JSON.parse(req.session.user);
+			//let creator = JSON.parse(req.session.token);
+			var token = JSON.parse(req.session.token);
+			token = _jsonwebtoken2.default.verify(token, 'secret');
+			var creator = token.usr;
 
 			var post = {
-				createdBy: creator.usr,
+				createdBy: creator,
 				status: "under-investigation",
 				location: "0,0",
 				comment: req.body.desc

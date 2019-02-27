@@ -37,6 +37,7 @@ function checkLogin(request, response, next){
 }
 
 function isLoggedIn(request, response, next){
+    //console.log(request);
     if(!request.session.token){
         const string = qs.stringify({
             status: 1,
@@ -58,13 +59,13 @@ function verifyAdmin(request, response, next){
 }
 
 function verifyToken(request, response, next){
-    let token = request.session.token;
+    let token = JSON.parse(request.session.token);
     jwt.verify(token, 'secret', (err, res) => {
         if(err){
             const string = qs.stringify({
                 status: 1,
                 msg: 'We could not verify you'
-            })
+            });
             response.redirect(`/?${string}`);
         } else next();
     });
@@ -79,6 +80,5 @@ function logout(request, response, next){
     }
     next();
 }
-
 
 export {checkReg, checkLogin, verifyAdmin, isLoggedIn, verifyToken, logout}

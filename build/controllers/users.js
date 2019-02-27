@@ -92,11 +92,10 @@ var User = function () {
                             isAdmin: Result[0].is_admin
                         };
                         var token = _jsonwebtoken2.default.sign(user, 'secret');
-                        // request.session.token = token;
+                        request.session.token = JSON.stringify(token);
                         active += 1; //count active users
 
                         //console.log(request.session.token)
-
                         response.redirect('/profile?' + user.usr);
                     } else {
                         var string = _querystring2.default.stringify({
